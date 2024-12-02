@@ -86,5 +86,376 @@
             }
         });
     </script>
+
+    <section id="home" class="hero">
+    <video autoplay muted loop id="hero-video">
+        <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+        <h2>Innovate. Empower. Succeed.</h2>
+        <p>Delivering cutting-edge IT, healthcare, and corporate solutions to empower your business.</p>
+        <a href="#about" class="btn-primary">Learn More</a>
+    </div>
+    <div id="scroll-indicator">
+        <p>Scroll Down</p>
+        <span class="arrow">⬇️</span>
+    </div>
+</section>
+
+<script>
+    // Scroll indicator animation
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    window.addEventListener('scroll', () => {
+        const opacity = 1 - window.scrollY / 200;
+        scrollIndicator.style.opacity = Math.max(opacity, 0);
+    });
+</script>
+
+<section id="about" class="about">
+    <h2>About Us</h2>
+    <p>We provide innovative solutions that empower businesses worldwide.</p>
+    <div class="stats">
+        <div class="stat-card">
+            <h3><span id="years-counter">0</span>+</h3>
+            <p>Years of Experience</p>
+        </div>
+        <div class="stat-card">
+            <h3><span id="clients-counter">0</span>+</h3>
+            <p>Global Clients</p>
+        </div>
+        <div class="stat-card">
+            <h3><span id="projects-counter">0</span>+</h3>
+            <p>Projects Delivered</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Animated Counters
+    const animateCounter = (id, target) => {
+        const element = document.getElementById(id);
+        let count = 0;
+        const increment = Math.ceil(target / 100);
+        const interval = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+                count = target;
+                clearInterval(interval);
+            }
+            element.textContent = count;
+        }, 30);
+    };
+
+    window.onload = () => {
+        animateCounter("years-counter", 10);
+        animateCounter("clients-counter", 500);
+        animateCounter("projects-counter", 2000);
+    };
+</script>
+
+<section id="services" class="services">
+    <h2>Our Services</h2>
+    <p>Explore our range of solutions designed to meet your business needs.</p>
+    <div class="service-grid">
+        <div class="service-card">
+            <img src="assets/healthcare.jpg" alt="Healthcare Solutions">
+            <h3>Healthcare Solutions</h3>
+            <p>Providing top-notch medical tools and services tailored for modern healthcare challenges.</p>
+        </div>
+        <div class="service-card">
+            <img src="assets/it.jpg" alt="IT Infrastructure">
+            <h3>IT Infrastructure</h3>
+            <p>Optimized IT systems for seamless operations and enhanced productivity.</p>
+        </div>
+        <div class="service-card">
+            <img src="assets/corporate.jpg" alt="Corporate Tools">
+            <h3>Corporate Tools</h3>
+            <p>Streamlined tools to boost workplace efficiency and collaboration.</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Lazy loading for images
+    const lazyImages = document.querySelectorAll('.service-card img');
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.getAttribute('data-src');
+                img.classList.add('fade-in');
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    lazyImages.forEach(img => {
+        observer.observe(img);
+    });
+</script>
+
+<section id="testimonials" class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <p>Hear from our satisfied clients who have transformed their businesses with our solutions.</p>
+    <div class="testimonial-carousel">
+        <div class="testimonial-item">
+            <p>"The IT solutions from Muntjac Group have revolutionized our business processes!"</p>
+            <h3>- John Doe</h3>
+        </div>
+        <div class="testimonial-item">
+            <p>"Exceptional healthcare solutions that have enhanced patient care tremendously."</p>
+            <h3>- Sarah Smith</h3>
+        </div>
+        <div class="testimonial-item">
+            <p>"Their corporate tools boosted our team's productivity by 40% in just three months."</p>
+            <h3>- Michael Brown</h3>
+        </div>
+    </div>
+    <div class="carousel-controls">
+        <button id="prev">&#8249;</button>
+        <button id="next">&#8250;</button>
+    </div>
+</section>
+
+<script>
+    // Testimonial Carousel Script
+    const carousel = document.querySelector('.testimonial-carousel');
+    const items = document.querySelectorAll('.testimonial-item');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+
+    let currentIndex = 0;
+
+    const updateCarousel = () => {
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    };
+
+    prev.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+        updateCarousel();
+    });
+
+    next.addEventListener('click', () => {
+        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    });
+
+    setInterval(() => {
+        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    }, 5000);
+</script>
+
+<section id="feed" class="feed">
+    <h2>Latest Updates</h2>
+    <p>Stay updated with the latest news, events, and announcements from Muntjac Group.</p>
+    <div class="feed-grid">
+        <div class="feed-card">
+            <img src="assets/feed1.jpg" alt="New IT Service">
+            <div class="feed-content">
+                <h3>New IT Infrastructure Service Launched</h3>
+                <p>Our new IT solutions are designed to transform how businesses operate in a digital age.</p>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+        </div>
+        <div class="feed-card">
+            <img src="assets/feed2.jpg" alt="Corporate Tools Update">
+            <div class="feed-content">
+                <h3>Corporate Tools Upgrade</h3>
+                <p>Explore our enhanced corporate tools to boost your team's productivity.</p>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+        </div>
+        <div class="feed-card">
+            <img src="assets/feed3.jpg" alt="Healthcare Solutions">
+            <div class="feed-content">
+                <h3>Advanced Healthcare Solutions</h3>
+                <p>Discover the latest innovations in healthcare technology with our tools and services.</p>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="newsletter" class="newsletter">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Get the latest updates, news, and exclusive offers delivered straight to your inbox.</p>
+    <form id="newsletter-form">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn-primary">Subscribe</button>
+    </form>
+    <p class="privacy-notice">We respect your privacy. Unsubscribe at any time.</p>
+</section>
+
+<script>
+    // Form validation
+    const form = document.getElementById('newsletter-form');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('email');
+        const email = emailInput.value.trim();
+        if (validateEmail(email)) {
+            alert('Thank you for subscribing!');
+            emailInput.value = ''; // Clear the input field
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    });
+
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+</script>
+
+<section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you! Reach out to us for any inquiries or support.</p>
+    <div class="contact-grid">
+        <form id="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+        <div id="map"></div>
+    </div>
+</section>
+
+<script>
+    // Contact form submission handling
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (name && validateEmail(email) && message) {
+            alert('Thank you for contacting us, ' + name + '! We will get back to you soon.');
+            contactForm.reset();
+        } else {
+            alert('Please fill out all fields correctly.');
+        }
+    });
+
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    // Google Maps integration
+    function initMap() {
+        const location = { lat: 40.7128, lng: -74.0060 }; // Example: New York City coordinates
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: location,
+        });
+        const marker = new google.maps.Marker({ position: location, map: map });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <p>&copy; 2024 Muntjac Group Resources. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="assets/facebook-icon.png" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <img src="assets/twitter-icon.png" alt="Twitter">
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                    <img src="assets/linkedin-icon.png" alt="LinkedIn">
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="assets/instagram-icon.png" alt="Instagram">
+                </a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#privacy-policy">Privacy Policy</a> |
+            <a href="#terms-of-service">Terms of Service</a> |
+            <a href="#sitemap">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Smooth Scroll for Navigation Links
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+            });
+        });
+    });
+
+    // Theme Toggle: Light and Dark Mode
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-theme');
+        if (document.body.classList.contains('dark-theme')) {
+            themeToggle.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeToggle.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Preserve Theme Preference
+    window.addEventListener('load', () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-theme');
+            themeToggle.textContent = '🌙';
+        }
+    });
+
+    // Back-to-Top Button
+    const backToTop = document.getElementById('back-to-top');
+    window.onscroll = function () {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    };
+    backToTop.onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Focus Indicators for Accessibility
+    document.querySelectorAll('a, button').forEach(element => {
+        element.addEventListener('focus', function () {
+            this.style.outline = '2px solid #007bff';
+            this.style.outlineOffset = '2px';
+        });
+        element.addEventListener('blur', function () {
+            this.style.outline = 'none';
+        });
+    });
+
+    // Accessibility: Keyboard Navigation for Menus
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                });
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
