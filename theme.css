@@ -1,44 +1,83 @@
-/* Light Theme */
+/* Theme.css */
+
+/* Default Light Theme */
 body {
-    --background-color: #ffffff;
-    --text-color: #000000;
+    --bg-color: #ffffff;
+    --text-color: #333333;
     --primary-color: #007bff;
-    --secondary-color: #6c757d;
+    --secondary-color: #f8f9fa;
+    --border-color: #dddddd;
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --link-hover: #0056b3;
+    --card-bg: #ffffff;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out;
 }
 
 /* Dark Theme */
 body.dark-theme {
-    --background-color: #121212;
-    --text-color: #ffffff;
-    --primary-color: #1a73e8;
-    --secondary-color: #9e9e9e;
-}
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #bb86fc;
+    --secondary-color: #1e1e1e;
+    --border-color: #333333;
+    --button-bg: #bb86fc;
+    --button-text: #121212;
+    --link-hover: #3700b3;
+    --card-bg: #1e1e1e;
 
-/* Apply variables */
-body {
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: Arial, sans-serif;
 }
 
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-button {
+/* Header */
+.header {
     background-color: var(--primary-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+    color: var(--button-text);
 }
 
-button:hover {
+.header .nav-links a {
+    color: var(--text-color);
+}
+
+.header .nav-links a:hover {
+    color: var(--link-hover);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+.btn-primary:hover {
+    background-color: var(--link-hover);
+}
+
+/* Cards */
+.service-card {
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.service-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
     background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.footer .social-links a {
+    color: var(--text-color);
+}
+
+.footer .social-links a:hover {
+    color: var(--primary-color);
 }
