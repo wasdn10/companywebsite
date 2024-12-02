@@ -1,88 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const serviceCards = document.querySelectorAll('.service-card');
-    const popup = document.getElementById('subcategory-popup');
-    const popupTitle = document.getElementById('popup-title');
-    const subcategoryList = document.getElementById('subcategory-list');
-    const closePopup = document.getElementById('close-popup');
+    const categoryContainer = document.getElementById('category-cards');
+    const subcategoryContainer = document.getElementById('subcategory-cards');
+    const itemContainer = document.getElementById('item-cards');
+    const backButton = document.getElementById('back-button');
 
-    // Subcategories Data
-    const subcategories = {
-        furniture: [
-            'Furniture, Laboratory Furniture, and Accessories',
-            'Wooden, Rattan, Fabric, Metal, Plastic-Based Furniture',
-            'Laboratory Furniture and Equipment'
-        ],
-        stationery: [
-            'General Stationery (Excluding Forms and Paper)',
-            'Drafting Materials and Drawing Tools',
-            'Organizers, Diaries, Calendars, Address Books, Receipt Books, Memo Pads',
-            'Tags, Labels, Signs, and Stickers'
-        ],
-        sports: ['Sportswear and Accessories'],
-        medical: [
-            'Hospital Equipment and Medical Supplies',
-            'Hospital Equipment and Accessories',
-            'Medical Equipment and Supplies',
-            'Rehabilitation and Disability Equipment'
-        ],
-        pharmaceuticals: ['Non-Scheduled Medicines'],
-        disposable: [
-            'Disposable Medical Tools',
-            'Disposable Textiles for Staff/Patients',
-            'Reusable Textiles for Staff/Patients'
-        ],
-        chemicals: [
-            'Laboratory Equipment',
-            'Laboratory Accessories',
-            'Measuring and Calibration Tools'
-        ],
-        defense: [
-            'Security and Enforcement Equipment',
-            'Safety, Protection, and Monitoring Tools',
-            'Fire Prevention Equipment'
-        ],
-        engineering: [
-            'Electrical Engineering Tools',
-            'Electrical Cables, Wires, and Accessories',
-            'Electrical and Electronic Components and Systems',
-            'Lighting Components and Accessories'
-        ],
-        professional: [
-            'Cleaning and Maintenance Services',
-            'Building and Office Cleaning',
-            'Area Cleaning',
-            'Garbage Collection'
-        ],
-        repairs: ['Air Conditioning Systems', 'Medical and Laboratory Equipment'],
-        beautification: [
-            'Building Interior Design',
-            'Outdoor Landscaping'
-        ],
-        leasing: ['Office Machines and Equipment'],
-        tailoring: ['Clothing and Accessories Tailoring']
+    const servicesData = {
+        furniture: {
+            title: 'Furniture and Office Equipment',
+            subcategories: {
+                lab: { title: 'Laboratory Furniture', items: ['Desks', 'Chairs', 'Cabinets'] },
+                wood: { title: 'Wooden Furniture', items: ['Tables', 'Bookshelves'] },
+                accessories: { title: 'Accessories', items: ['Lab Tables', 'Lab Cabinets'] }
+            }
+        },
+        stationery: {
+            title: 'Office Supplies and Stationery',
+            subcategories: {
+                general: { title: 'General Stationery', items: ['Pens', 'Notebooks'] },
+                drafting: { title: 'Drafting Tools', items: ['Rulers', 'Drawing Pads'] },
+                organizers: { title: 'Organizers', items: ['Diaries', 'Calendars', 'Address Books'] }
+            }
+        },
+        // Additional categories and subcategories...
     };
 
-    // Show Subcategory Popup
-    serviceCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const category = card.getAttribute('data-category');
-            popupTitle.textContent = card.querySelector('h3').textContent;
-            subcategoryList.innerHTML = subcategories[category]
-                .map(item => `<li>${item}</li>`)
-                .join('');
-            popup.classList.add('visible');
+    const renderCards = (container, data, type) => {
+        container.innerHTML = '';
+        Object.entries(data).forEach(([key, value]) => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.setAttribute('data-key', key);
+            card.innerHTML = `<h3>${value.title || key}</h3><p>${value.description || ''}</p>`;
+            card.addEventListener('click', () => handleCardClick(key, type));
+            container.appendChild(card);
         });
-    });
+    };
 
-    // Close Popup
-    closePopup.addEventListener('click', () => {
-        popup.classList.remove('visible');
-    });
-
-    // Close Popup on Outside Click
-    window.addEventListener('click', (event) => {
-        if (event.target === popup) {
-            popup.classList.remove('visible');
+    const handleCardClick = (key, type) => {
+        if (type === 'category') {
+            renderCards(subcategoryContainer, servicesData[key].subcategories, 'subcategory');
+            toggleVisibility(categoryContainer, subcategoryContainer);
+        } else if (type === 'subcategory') {
+            renderCards(itemContainer, servicesData[key].items.reduce((acc, item) => {
+                acc[item] = { title: item };
+                return acc;
+            }, {}), 'item');
+            toggleVisibility(subcategoryContainer, itemContainer);
         }
-    });
+    };
+
+    const toggleVisibility = (hideContainer, showContainer) => {
+        hideContainer.classList.add('hidden');
+        showContainer.classList.remove('hidden');
+        backButton.classList.remove('hidden');
+    };
+
+    const navigateBack = () => {
+        if (!itemContainer.classList.contains('hidden')) {
+            toggleVisibility(itemContainer, subcategoryContainer);
+        } else if (!subcategoryContainer.classList.contains('hidden')) {
+            toggleVisibility(subcategoryContainer, categoryContainer);
+            backButton.classList.add('hidden');
+        }
+    };
+
+    renderCards(categoryContainer, servicesData, 'category');
+    backButton.addEventListener('click', navigateBack);
 });
