@@ -1,88 +1,185 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const serviceCards = document.querySelectorAll('.service-card');
-    const popup = document.getElementById('subcategory-popup');
-    const popupTitle = document.getElementById('popup-title');
-    const subcategoryList = document.getElementById('subcategory-list');
-    const closePopup = document.getElementById('close-popup');
+/* Services Section */
+.services {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    text-align: center;
+}
 
-    // Subcategories Data
-    const subcategories = {
-        furniture: [
-            'Furniture, Laboratory Furniture, and Accessories',
-            'Wooden, Rattan, Fabric, Metal, Plastic-Based Furniture',
-            'Laboratory Furniture and Equipment'
-        ],
-        stationery: [
-            'General Stationery (Excluding Forms and Paper)',
-            'Drafting Materials and Drawing Tools',
-            'Organizers, Diaries, Calendars, Address Books, Receipt Books, Memo Pads',
-            'Tags, Labels, Signs, and Stickers'
-        ],
-        sports: ['Sportswear and Accessories'],
-        medical: [
-            'Hospital Equipment and Medical Supplies',
-            'Hospital Equipment and Accessories',
-            'Medical Equipment and Supplies',
-            'Rehabilitation and Disability Equipment'
-        ],
-        pharmaceuticals: ['Non-Scheduled Medicines'],
-        disposable: [
-            'Disposable Medical Tools',
-            'Disposable Textiles for Staff/Patients',
-            'Reusable Textiles for Staff/Patients'
-        ],
-        chemicals: [
-            'Laboratory Equipment',
-            'Laboratory Accessories',
-            'Measuring and Calibration Tools'
-        ],
-        defense: [
-            'Security and Enforcement Equipment',
-            'Safety, Protection, and Monitoring Tools',
-            'Fire Prevention Equipment'
-        ],
-        engineering: [
-            'Electrical Engineering Tools',
-            'Electrical Cables, Wires, and Accessories',
-            'Electrical and Electronic Components and Systems',
-            'Lighting Components and Accessories'
-        ],
-        professional: [
-            'Cleaning and Maintenance Services',
-            'Building and Office Cleaning',
-            'Area Cleaning',
-            'Garbage Collection'
-        ],
-        repairs: ['Air Conditioning Systems', 'Medical and Laboratory Equipment'],
-        beautification: [
-            'Building Interior Design',
-            'Outdoor Landscaping'
-        ],
-        leasing: ['Office Machines and Equipment'],
-        tailoring: ['Clothing and Accessories Tailoring']
-    };
+.services h2 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
 
-    // Show Subcategory Popup
-    serviceCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const category = card.getAttribute('data-category');
-            popupTitle.textContent = card.querySelector('h3').textContent;
-            subcategoryList.innerHTML = subcategories[category]
-                .map(item => `<li>${item}</li>`)
-                .join('');
-            popup.classList.add('visible');
-        });
-    });
+.services h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #007bff;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
 
-    // Close Popup
-    closePopup.addEventListener('click', () => {
-        popup.classList.remove('visible');
-    });
+.services p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    // Close Popup on Outside Click
-    window.addEventListener('click', (event) => {
-        if (event.target === popup) {
-            popup.classList.remove('visible');
-        }
-    });
-});
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.service-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.service-card p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Popup Modal */
+.subcategory-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.subcategory-popup.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: slide-down 0.3s ease;
+}
+
+.popup-content h4 {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.popup-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup-content ul li {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+}
+
+.popup-content ul li:last-child {
+    border-bottom: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #007bff;
+}
+
+/* Keyframes for Popup Animation */
+@keyframes slide-down {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+    }
+
+    .popup-content {
+        padding: 1.5rem;
+    }
+
+    .popup-content h4 {
+        font-size: 1.5rem;
+    }
+
+    .popup-content ul li {
+        font-size: 0.9rem;
+    }
+}
