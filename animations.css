@@ -1,67 +1,113 @@
-/* Animations for the website */
+/* Animations.css */
 
-/* Fade-in animation */
+/* Smooth Fade-In Animation */
 @keyframes fadeIn {
-    from {
+    0% {
         opacity: 0;
+        transform: translateY(20px);
     }
-    to {
+    100% {
         opacity: 1;
-    }
-}
-
-/* Slide-in from left animation */
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Slide-in from right animation */
-@keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Bounce animation */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }
-    40% {
-        transform: translateY(-20px);
+}
+
+/* Scale-Up Animation */
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
     }
-    60% {
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
         transform: translateY(-10px);
     }
 }
 
-/* Apply fade-in animation to elements */
-.fade-in {
-    animation: fadeIn 1s ease-in-out;
+/* Hero Text Animation */
+.hero h2, .hero p {
+    animation: fadeIn 1s ease-in-out forwards;
+    opacity: 0;
 }
 
-/* Apply slide-in animations */
-.slide-in-left {
-    animation: slideInLeft 1s ease-in-out;
+.hero h2 {
+    animation-delay: 0.2s;
 }
 
-.slide-in-right {
-    animation: slideInRight 1s ease-in-out;
+.hero p {
+    animation-delay: 0.4s;
 }
 
-/* Apply bounce animation */
-.bounce {
+/* Button Hover Animation */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll Indicator */
+#scroll-indicator {
     animation: bounce 2s infinite;
+}
+
+/* Service Cards Fade-In */
+.service-card {
+    animation: fadeIn 1s ease-in-out forwards;
+    opacity: 0;
+}
+
+.service-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.service-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* Testimonials Carousel */
+.testimonial-item {
+    animation: scaleUp 0.5s ease-in-out forwards;
+    opacity: 0;
+}
+
+.testimonial-item:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.testimonial-item:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.testimonial-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* Footer Social Links Hover */
+.footer .social-links a:hover img {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
 }
