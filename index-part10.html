@@ -1,0 +1,73 @@
+<script>
+    // Smooth Scroll for Navigation Links
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+            });
+        });
+    });
+
+    // Theme Toggle: Light and Dark Mode
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-theme');
+        if (document.body.classList.contains('dark-theme')) {
+            themeToggle.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeToggle.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Preserve Theme Preference
+    window.addEventListener('load', () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-theme');
+            themeToggle.textContent = '🌙';
+        }
+    });
+
+    // Back-to-Top Button
+    const backToTop = document.getElementById('back-to-top');
+    window.onscroll = function () {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            backToTop.style.display = 'block';
+        } else {
+            backToTop.style.display = 'none';
+        }
+    };
+    backToTop.onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Focus Indicators for Accessibility
+    document.querySelectorAll('a, button').forEach(element => {
+        element.addEventListener('focus', function () {
+            this.style.outline = '2px solid #007bff';
+            this.style.outlineOffset = '2px';
+        });
+        element.addEventListener('blur', function () {
+            this.style.outline = 'none';
+        });
+    });
+
+    // Accessibility: Keyboard Navigation for Menus
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                });
+            }
+        });
+    });
+</script>
