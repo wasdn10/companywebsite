@@ -1,0 +1,47 @@
+<section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you! Reach out to us for any inquiries or support.</p>
+    <div class="contact-grid">
+        <form id="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+        <div id="map"></div>
+    </div>
+</section>
+
+<script>
+    // Contact form submission handling
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (name && validateEmail(email) && message) {
+            alert('Thank you for contacting us, ' + name + '! We will get back to you soon.');
+            contactForm.reset();
+        } else {
+            alert('Please fill out all fields correctly.');
+        }
+    });
+
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    // Google Maps integration
+    function initMap() {
+        const location = { lat: 40.7128, lng: -74.0060 }; // Example: New York City coordinates
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: location,
+        });
+        const marker = new google.maps.Marker({ position: location, map: map });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
