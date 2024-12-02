@@ -6,20 +6,21 @@
     <meta name="description" content="Modern and powerful website with professional features">
     <meta name="keywords" content="Business, IT, Healthcare, Corporate Solutions">
     <title>Muntjac Group Resources</title>
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="preloader.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="hero.css">
     <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="testimonials.css">
+    <link rel="stylesheet" href="feed.css">
     <link rel="stylesheet" href="newsletter.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="footer.css">
 </head>
 <body>
     <!-- Preloader -->
-    <div id="preloader" aria-hidden="true">
+    <div id="preloader">
         <div class="spinner"></div>
     </div>
 
@@ -37,12 +38,12 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#newsletter">Newsletter</a></li>
+                    <li><a href="#feed">Feed</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="header-actions">
-                    <input type="text" placeholder="Search..." class="search-bar" aria-label="Search">
-                    <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+                    <input type="text" placeholder="Search..." class="search-bar">
+                    <button id="theme-toggle">🌙</button>
                 </div>
             </nav>
         </div>
@@ -50,14 +51,13 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video autoplay muted loop id="hero-video" aria-label="Hero Background Video">
+        <video autoplay muted loop id="hero-video">
             <source src="assets/hero-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
         <div class="hero-content">
             <h2>Innovate. Empower. Succeed.</h2>
             <p>Delivering cutting-edge IT, healthcare, and corporate solutions to empower your business.</p>
-            <a href="#about" class="btn-primary" aria-label="Learn More About Us">Learn More</a>
+            <a href="#about" class="btn-primary">Learn More</a>
         </div>
         <div id="scroll-indicator">
             <p>Scroll Down</p>
@@ -65,7 +65,45 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <script>
+        // Preloader
+        window.onload = function () {
+            document.getElementById('preloader').style.display = 'none';
+        };
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Back-to-top button
+        const backToTop = document.getElementById('back-to-top');
+        window.onscroll = function () {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        };
+        backToTop.onclick = function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', function () {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                themeToggle.textContent = '☀️';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+        });
+    </script>
+
+        <!-- About Section -->
     <section id="about" class="about">
         <h2>About Us</h2>
         <p>We provide innovative solutions that empower businesses worldwide.</p>
@@ -88,31 +126,55 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <h2>Our Services</h2>
+        <p>Explore our range of solutions designed to meet your business needs.</p>
         <div class="service-grid">
             <div class="service-card">
-                <img src="assets/healthcare.jpg" alt="Healthcare Solutions" loading="lazy">
+                <img src="assets/healthcare.jpg" alt="Healthcare Solutions">
                 <h3>Healthcare Solutions</h3>
                 <p>Providing top-notch medical tools and services tailored for modern healthcare challenges.</p>
             </div>
             <div class="service-card">
-                <img src="assets/it.jpg" alt="IT Infrastructure" loading="lazy">
+                <img src="assets/it.jpg" alt="IT Infrastructure">
                 <h3>IT Infrastructure</h3>
                 <p>Optimized IT systems for seamless operations and enhanced productivity.</p>
             </div>
             <div class="service-card">
-                <img src="assets/corporate.jpg" alt="Corporate Tools" loading="lazy">
+                <img src="assets/corporate.jpg" alt="Corporate Tools">
                 <h3>Corporate Tools</h3>
                 <p>Streamlined tools to boost workplace efficiency and collaboration.</p>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
+    <script>
+        // Counter Animation
+        const animateCounter = (id, target) => {
+            const element = document.getElementById(id);
+            let count = 0;
+            const increment = Math.ceil(target / 100);
+            const interval = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
+                }
+                element.textContent = count;
+            }, 30);
+        };
+
+        window.onload = () => {
+            animateCounter("years-counter", 10);
+            animateCounter("clients-counter", 500);
+            animateCounter("projects-counter", 2000);
+        };
+    </script>
+
+        <!-- Newsletter Section -->
     <section id="newsletter" class="newsletter">
         <h2>Subscribe to Our Newsletter</h2>
         <p>Get the latest updates, news, and exclusive offers delivered straight to your inbox.</p>
         <form id="newsletter-form">
-            <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
             <button type="submit" class="btn-primary">Subscribe</button>
         </form>
         <p class="privacy-notice">We respect your privacy. Unsubscribe at any time.</p>
@@ -121,43 +183,49 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
+        <p>We’d love to hear from you! Reach out to us for any inquiries or support.</p>
         <div class="contact-grid">
             <form id="contact-form">
-                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
-                <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
                 <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                 <button type="submit" class="btn-primary">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Muntjac Group Resources. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com" target="_blank">
-                    <img src="assets/facebook-icon.png" alt="Facebook">
-                </a>
-                <a href="https://www.twitter.com" target="_blank">
-                    <img src="assets/twitter-icon.png" alt="Twitter">
-                </a>
+            <div class="footer-content">
+                <p>&copy; 2024 Muntjac Group Resources. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img src="assets/facebook-icon.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank">
+                        <img src="assets/twitter-icon.png" alt="Twitter">
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Global JS -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) preloader.style.display = 'none';
-
-            // Theme Toggle
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-theme');
-                themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                });
             });
+        });
+
+        // Lazy Load Images
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
         });
     </script>
 </body>
