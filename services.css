@@ -1,185 +1,113 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    color: #333;
+}
+
 /* Services Section */
 .services {
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, #f8f9fa, #ffffff);
     text-align: center;
 }
 
 .services h2 {
     font-size: 2.5rem;
     color: #007bff;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    display: inline-block;
-}
-
-.services h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: #007bff;
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
 }
 
 .services p {
     font-size: 1.2rem;
     color: #555;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 2rem;
 }
 
-.service-grid {
+/* Card Grid */
+.card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    align-items: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
-.service-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
+/* Cards */
+.card {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.service-card h3 {
-    font-size: 1.5rem;
+.card h3 {
+    font-size: 1.3rem;
     color: #007bff;
-    margin-bottom: 1rem;
-    text-transform: capitalize;
+    margin-bottom: 0.5rem;
 }
 
-.service-card p {
-    color: #666;
+.card p {
     font-size: 1rem;
+    color: #666;
     line-height: 1.5;
 }
 
-/* Popup Modal */
-.subcategory-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+/* Hidden and Transition Effects */
+.hidden {
+    display: none;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.5s ease;
 }
 
-.subcategory-popup.visible {
+.visible {
+    display: grid;
     opacity: 1;
-    visibility: visible;
 }
 
-.popup-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    text-align: left;
-    position: relative;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    animation: slide-down 0.3s ease;
-}
-
-.popup-content h4 {
-    font-size: 1.8rem;
-    color: #007bff;
-    margin-bottom: 1rem;
-    text-transform: capitalize;
-}
-
-.popup-content ul {
-    list-style: none;
-    padding: 0;
-}
-
-.popup-content ul li {
-    padding: 0.5rem 0;
+/* Back Button */
+.back-button {
+    display: inline-block;
+    margin: 1.5rem 0;
+    padding: 0.5rem 1.5rem;
     font-size: 1rem;
-    color: #555;
-    border-bottom: 1px solid #ddd;
-}
-
-.popup-content ul li:last-child {
-    border-bottom: none;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
+    background: #007bff;
+    color: #ffffff;
     border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #555;
+    border-radius: 5px;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
-.close-btn:hover {
-    color: #007bff;
+.back-button:hover {
+    background: #0056b3;
 }
 
-/* Keyframes for Popup Animation */
-@keyframes slide-down {
-    from {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Responsiveness */
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .service-card {
-        padding: 1.5rem;
+    .card-grid {
+        grid-template-columns: 1fr;
     }
 
-    .service-card h3 {
-        font-size: 1.3rem;
+    .card {
+        padding: 1rem;
     }
 
-    .service-card p {
-        font-size: 0.9rem;
+    .card h3 {
+        font-size: 1.2rem;
     }
 
-    .popup-content {
-        padding: 1.5rem;
-    }
-
-    .popup-content h4 {
-        font-size: 1.5rem;
-    }
-
-    .popup-content ul li {
+    .card p {
         font-size: 0.9rem;
     }
 }
