@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern and powerful website with professional features">
+    <meta name="keywords" content="Business, IT, Healthcare, Corporate Solutions">
+    <title>Muntjac Group Resources</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="preloader.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="testimonials.css">
+    <link rel="stylesheet" href="feed.css">
+    <link rel="stylesheet" href="newsletter.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="global-scripts.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Muntjac Group</h1>
+            <nav>
+                <button class="hamburger" aria-label="Toggle navigation">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#feed">Feed</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="header-actions">
+                    <input type="text" placeholder="Search..." class="search-bar">
+                    <button id="theme-toggle">🌙</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <video autoplay muted loop id="hero-video">
+            <source src="assets/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h2>Innovate. Empower. Succeed.</h2>
+            <p>Delivering cutting-edge IT, healthcare, and corporate solutions to empower your business.</p>
+            <a href="#about" class="btn-primary">Learn More</a>
+        </div>
+        <div id="scroll-indicator">
+            <p>Scroll Down</p>
+            <span class="arrow">⬇️</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>We provide innovative solutions that empower businesses worldwide.</p>
+        <div class="stats">
+            <div class="stat-card">
+                <h3><span id="years-counter">0</span>+</h3>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat-card">
+                <h3><span id="clients-counter">0</span>+</h3>
+                <p>Global Clients</p>
+            </div>
+            <div class="stat-card">
+                <h3><span id="projects-counter">0</span>+</h3>
+                <p>Projects Delivered</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <p>Explore our range of solutions designed to meet your business needs.</p>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="assets/healthcare.jpg" alt="Healthcare Solutions">
+                <h3>Healthcare Solutions</h3>
+                <p>Providing top-notch medical tools and services tailored for modern healthcare challenges.</p>
+            </div>
+            <div class="service-card">
+                <img src="assets/it.jpg" alt="IT Infrastructure">
+                <h3>IT Infrastructure</h3>
+                <p>Optimized IT systems for seamless operations and enhanced productivity.</p>
+            </div>
+            <div class="service-card">
+                <img src="assets/corporate.jpg" alt="Corporate Tools">
+                <h3>Corporate Tools</h3>
+                <p>Streamlined tools to boost workplace efficiency and collaboration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <p>Hear from our satisfied clients who have transformed their businesses with our solutions.</p>
+        <div class="testimonial-carousel">
+            <div class="testimonial-item">
+                <p>"The IT solutions from Muntjac Group have revolutionized our business processes!"</p>
+                <h3>- John Doe</h3>
+            </div>
+            <div class="testimonial-item">
+                <p>"Exceptional healthcare solutions that have enhanced patient care tremendously."</p>
+                <h3>- Sarah Smith</h3>
+            </div>
+            <div class="testimonial-item">
+                <p>"Their corporate tools boosted our team's productivity by 40% in just three months."</p>
+                <h3>- Michael Brown</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feed Section -->
+    <section id="feed" class="feed">
+        <h2>Latest Updates</h2>
+        <p>Stay updated with the latest news, events, and announcements from Muntjac Group.</p>
+        <div class="feed-grid">
+            <div class="feed-card">
+                <img src="assets/feed1.jpg" alt="New IT Service">
+                <div class="feed-content">
+                    <h3>New IT Infrastructure Service Launched</h3>
+                    <p>Our new IT solutions are designed to transform how businesses operate in a digital age.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get the latest updates, news, and exclusive offers delivered straight to your inbox.</p>
+        <form id="newsletter-form">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
+            <button type="submit" class="btn-primary">Subscribe</button>
+        </form>
+        <p class="privacy-notice">We respect your privacy. Unsubscribe at any time.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you! Reach out to us for any inquiries or support.</p>
+        <div class="contact-grid">
+            <form id="contact-form">
+                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
+                <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Muntjac Group Resources. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img src="assets/facebook-icon.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank">
+                        <img src="assets/twitter-icon.png" alt="Twitter">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="global.js"></script>
+</body>
+</html>
