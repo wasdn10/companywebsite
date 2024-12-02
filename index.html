@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0">
     <meta name="description" content="Modern and powerful website with professional features">
     <meta name="keywords" content="Business, IT, Healthcare, Corporate Solutions">
     <title>Muntjac Group Resources</title>
@@ -17,11 +17,10 @@
     <link rel="stylesheet" href="newsletter.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="global-scripts.css">
 </head>
 <body>
     <!-- Preloader -->
-    <div id="preloader">
+    <div id="preloader" aria-hidden="true">
         <div class="spinner"></div>
     </div>
 
@@ -43,8 +42,8 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="header-actions">
-                    <input type="text" placeholder="Search..." class="search-bar">
-                    <button id="theme-toggle">🌙</button>
+                    <input type="text" placeholder="Search..." class="search-bar" aria-label="Search">
+                    <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
                 </div>
             </nav>
         </div>
@@ -52,13 +51,14 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video autoplay muted loop id="hero-video">
+        <video autoplay muted loop id="hero-video" aria-label="Hero Background Video">
             <source src="assets/hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
         <div class="hero-content">
             <h2>Innovate. Empower. Succeed.</h2>
             <p>Delivering cutting-edge IT, healthcare, and corporate solutions to empower your business.</p>
-            <a href="#about" class="btn-primary">Learn More</a>
+            <a href="#about" class="btn-primary" aria-label="Learn More About Us">Learn More</a>
         </div>
         <div id="scroll-indicator">
             <p>Scroll Down</p>
@@ -89,58 +89,21 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <h2>Our Services</h2>
-        <p>Explore our range of solutions designed to meet your business needs.</p>
         <div class="service-grid">
             <div class="service-card">
-                <img src="assets/healthcare.jpg" alt="Healthcare Solutions">
+                <img src="assets/healthcare.jpg" alt="Healthcare Solutions" loading="lazy">
                 <h3>Healthcare Solutions</h3>
                 <p>Providing top-notch medical tools and services tailored for modern healthcare challenges.</p>
             </div>
             <div class="service-card">
-                <img src="assets/it.jpg" alt="IT Infrastructure">
+                <img src="assets/it.jpg" alt="IT Infrastructure" loading="lazy">
                 <h3>IT Infrastructure</h3>
                 <p>Optimized IT systems for seamless operations and enhanced productivity.</p>
             </div>
             <div class="service-card">
-                <img src="assets/corporate.jpg" alt="Corporate Tools">
+                <img src="assets/corporate.jpg" alt="Corporate Tools" loading="lazy">
                 <h3>Corporate Tools</h3>
                 <p>Streamlined tools to boost workplace efficiency and collaboration.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <h2>What Our Clients Say</h2>
-        <p>Hear from our satisfied clients who have transformed their businesses with our solutions.</p>
-        <div class="testimonial-carousel">
-            <div class="testimonial-item">
-                <p>"The IT solutions from Muntjac Group have revolutionized our business processes!"</p>
-                <h3>- John Doe</h3>
-            </div>
-            <div class="testimonial-item">
-                <p>"Exceptional healthcare solutions that have enhanced patient care tremendously."</p>
-                <h3>- Sarah Smith</h3>
-            </div>
-            <div class="testimonial-item">
-                <p>"Their corporate tools boosted our team's productivity by 40% in just three months."</p>
-                <h3>- Michael Brown</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- Feed Section -->
-    <section id="feed" class="feed">
-        <h2>Latest Updates</h2>
-        <p>Stay updated with the latest news, events, and announcements from Muntjac Group.</p>
-        <div class="feed-grid">
-            <div class="feed-card">
-                <img src="assets/feed1.jpg" alt="New IT Service">
-                <div class="feed-content">
-                    <h3>New IT Infrastructure Service Launched</h3>
-                    <p>Our new IT solutions are designed to transform how businesses operate in a digital age.</p>
-                    <a href="#" class="read-more">Read More</a>
-                </div>
             </div>
         </div>
     </section>
@@ -159,7 +122,6 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
-        <p>We’d love to hear from you! Reach out to us for any inquiries or support.</p>
         <div class="contact-grid">
             <form id="contact-form">
                 <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
@@ -173,20 +135,19 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Muntjac Group Resources. All Rights Reserved.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com" target="_blank">
-                        <img src="assets/facebook-icon.png" alt="Facebook">
-                    </a>
-                    <a href="https://www.twitter.com" target="_blank">
-                        <img src="assets/twitter-icon.png" alt="Twitter">
-                    </a>
-                </div>
+            <p>&copy; 2024 Muntjac Group Resources. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="assets/facebook-icon.png" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <img src="assets/twitter-icon.png" alt="Twitter">
+                </a>
             </div>
         </div>
     </footer>
 
+    <!-- Global JS -->
     <script src="global.js"></script>
 </body>
 </html>
