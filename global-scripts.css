@@ -1,0 +1,51 @@
+/* Dark Theme */
+body.dark-theme {
+    background: #121212;
+    color: #ffffff;
+}
+
+body.dark-theme .header {
+    background: #1f1f1f;
+}
+
+body.dark-theme .btn-primary {
+    background: #1f1f1f;
+    color: #ffffff;
+}
+
+body.dark-theme .btn-primary:hover {
+    background: #333333;
+}
+
+body.dark-theme .footer {
+    background: #1f1f1f;
+}
+
+/* Back-to-Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #007bff;
+    color: white;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    display: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#back-to-top:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Accessibility Focus Outline */
+a:focus,
+button:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
