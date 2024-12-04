@@ -144,41 +144,36 @@
     </script>
 
         <!-- Services Section -->
+        <!-- Services Section -->
     <section id="services" class="services">
         <h2>Our Services</h2>
         <p>Explore our range of solutions designed to meet your business needs.</p>
-        <div class="service-grid" id="category-grid">
-            <!-- Furniture and Office Equipment -->
-            <div class="card" data-category="furniture">
+        <div class="service-grid">
+             <!-- Example Category Card -->
+            <div class="service-card" data-category="furniture">
                 <h3>Furniture and Office Equipment</h3>
-                <p>Furniture and accessories for offices and laboratories.</p>
+                <p>Explore furniture and accessories.</p>
             </div>
-
             <!-- Office Supplies and Stationery -->
             <div class="card" data-category="stationery">
                 <h3>Office Supplies and Stationery</h3>
                 <p>Comprehensive office supplies and stationery items.</p>
             </div>
-
             <!-- Sports and Recreational Equipment -->
             <div class="card" data-category="sports">
                 <h3>Sports and Recreational Equipment</h3>
                 <p>Sportswear, accessories, and recreational tools.</p>
             </div>
-
             <!-- Medical and Pharmaceutical Equipment -->
             <div class="card" data-category="medical">
                 <h3>Medical and Pharmaceutical Equipment</h3>
                 <p>Comprehensive hospital and medical equipment.</p>
             </div>
-
             <!-- Pharmaceuticals -->
             <div class="card" data-category="pharmaceuticals">
                 <h3>Pharmaceuticals</h3>
                 <p>Non-scheduled medicines and pharmaceutical supplies.</p>
             </div>
-
-            <!-- Additional Categories -->
             <div class="card" data-category="disposable">
                 <h3>Medical Disposable and Reusable Equipment</h3>
                 <p>Disposable and reusable medical tools and textiles.</p>
@@ -216,16 +211,25 @@
                 <p>Clothing and accessories tailoring services.</p>
             </div>
         </div>
+    </section>    
 
-        <!-- Subcategory Grid -->
-        <div class="subcategory-grid hidden" id="subcategory-grid"></div>
+    <!-- Subcategory Popup -->
+    <div id="subcategory-popup" class="popup hidden">
+        <div class="popup-header">
+            <h3 id="subcategory-title"></h3>
+            <button id="subcategory-close">&times;</button>
+        </div>
+        <ul id="subcategory-list"></ul>
+    </div>
 
-        <!-- Item Grid -->
-        <div class="items-grid hidden" id="items-grid"></div>
-
-        <!-- Back Button -->
-        <button id="back-button" class="hidden">Back</button>
-    </section>
+    <!-- Items Popup -->
+    <div id="items-popup" class="popup hidden">
+        <div class="popup-header">
+            <h3 id="items-title"></h3>
+            <button id="items-close">&times;</button>
+        </div>
+        <ul id="items-list"></ul>
+    </div>
     
         <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
