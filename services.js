@@ -1,154 +1,205 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Complete data structure with categories, subcategories, and items
     const categories = {
         furniture: {
-            title: "Furniture and Office Equipment",
-            subcategories: {
-                labFurniture: {
-                    title: "Furniture, Laboratory Furniture, and Accessories",
-                    items: ["Lab Tables", "Cabinets", "Shelves"],
+            subcategories: [
+                {
+                    name: "Furniture, Laboratory Furniture, and Accessories",
+                    items: ["Office Desks", "Ergonomic Chairs", "Laboratory Tables"]
                 },
-                woodenFurniture: {
-                    title: "Wooden, Rattan, Fabric, Metal, Plastic-Based Furniture",
-                    items: ["Desks", "Rattan Chairs", "Plastic Cabinets"],
+                {
+                    name: "Wooden, Rattan, Fabric, Metal, Plastic-Based Furniture",
+                    items: ["Wooden Cabinets", "Rattan Sofas", "Metal Shelves"]
                 },
-                labEquipment: {
-                    title: "Laboratory Furniture and Equipment",
-                    items: ["Lab Stools", "Chemical Cabinets"],
+                {
+                    name: "Laboratory Furniture and Equipment",
+                    items: ["Lab Benches", "Storage Racks", "Safety Cabinets"]
                 },
-            },
+            ],
         },
         stationery: {
-            title: "Office Supplies and Stationery",
-            subcategories: {
-                generalStationery: {
-                    title: "General Stationery (Excluding Forms and Paper)",
-                    items: ["Pens", "Pencils", "Staplers"],
+            subcategories: [
+                {
+                    name: "General Stationery (Excluding Forms and Paper)",
+                    items: ["Pens", "Markers", "Notebooks"]
                 },
-                draftingTools: {
-                    title: "Drafting Materials and Drawing Tools",
-                    items: ["Rulers", "Drawing Pads"],
+                {
+                    name: "Drafting Materials and Drawing Tools",
+                    items: ["Rulers", "Protractors", "Drawing Compasses"]
                 },
-                organizers: {
-                    title: "Organizers, Diaries, Calendars, Address Books",
-                    items: ["Planners", "Calendars", "Memo Pads"],
+                {
+                    name: "Organizers, Diaries, Calendars, Address Books, Receipt Books, Memo Pads",
+                    items: ["Wall Calendars", "Desk Planners", "Memo Pads"]
                 },
-                tagsAndLabels: {
-                    title: "Tags, Labels, Signs, and Stickers",
-                    items: ["Adhesive Labels", "Name Tags"],
+                {
+                    name: "Tags, Labels, Signs, and Stickers",
+                    items: ["Adhesive Labels", "Name Tags", "Custom Stickers"]
                 },
-            },
+            ],
         },
         sports: {
-            title: "Sports and Recreational Equipment",
-            subcategories: {
-                sportswear: {
-                    title: "Sportswear and Accessories",
-                    items: ["Jerseys", "Shoes", "Sports Bags"],
+            subcategories: [
+                {
+                    name: "Sportswear and Accessories",
+                    items: ["Running Shoes", "Sports Bags", "Workout Apparel"]
                 },
-            },
+            ],
         },
         medical: {
-            title: "Medical and Pharmaceutical Equipment",
-            subcategories: {
-                hospitalEquipment: {
-                    title: "Hospital Equipment and Medical Supplies",
-                    items: ["Surgical Beds", "ECG Machines"],
+            subcategories: [
+                {
+                    name: "Hospital Equipment and Medical Supplies",
+                    items: ["Hospital Beds", "Wheelchairs", "Oxygen Tanks"]
                 },
-                accessories: {
-                    title: "Hospital Equipment and Accessories",
-                    items: ["Bed Rails", "Medical Trolleys"],
+                {
+                    name: "Hospital Equipment and Accessories",
+                    items: ["IV Stands", "Medical Monitors", "Surgical Lights"]
                 },
-                supplies: {
-                    title: "Medical Equipment and Supplies",
-                    items: ["Syringes", "Blood Pressure Monitors"],
+                {
+                    name: "Medical Equipment and Supplies",
+                    items: ["Stethoscopes", "Thermometers", "Blood Pressure Monitors"]
                 },
-                rehabilitation: {
-                    title: "Rehabilitation and Disability Equipment",
-                    items: ["Wheelchairs", "Crutches"],
+                {
+                    name: "Rehabilitation and Disability Equipment",
+                    items: ["Crutches", "Walkers", "Hearing Aids"]
                 },
-            },
+            ],
         },
         pharmaceuticals: {
-            title: "Pharmaceuticals",
-            subcategories: {
-                nonScheduled: {
-                    title: "Non-Scheduled Medicines",
-                    items: ["Painkillers", "Vitamins"],
+            subcategories: [
+                {
+                    name: "Non-Scheduled Medicines",
+                    items: ["Pain Relievers", "Cold Medications", "Vitamins"]
                 },
-            },
+            ],
         },
         disposable: {
-            title: "Medical Disposable and Reusable Equipment",
-            subcategories: {
-                disposableTools: {
-                    title: "Disposable Medical Tools",
-                    items: ["Surgical Gloves", "Face Masks"],
+            subcategories: [
+                {
+                    name: "Disposable Medical Tools",
+                    items: ["Syringes", "Disposable Gloves", "Face Masks"]
                 },
-                disposableTextiles: {
-                    title: "Disposable Textiles for Staff/Patients",
-                    items: ["Gowns", "Bed Linens"],
+                {
+                    name: "Disposable Textiles for Staff/Patients",
+                    items: ["Surgical Gowns", "Patient Sheets", "Head Covers"]
                 },
-                reusableTextiles: {
-                    title: "Reusable Textiles for Staff/Patients",
-                    items: ["Reusable Scrubs", "Reusable Masks"],
+                {
+                    name: "Reusable Textiles for Staff/Patients",
+                    items: ["Washable Gowns", "Reusable Bed Sheets", "Pillow Covers"]
                 },
-            },
+            ],
         },
         chemicals: {
-            title: "Chemicals and Laboratory Equipment",
-            subcategories: {
-                labEquipment: {
-                    title: "Laboratory Equipment",
-                    items: ["Beakers", "Test Tubes", "Microscopes"],
+            subcategories: [
+                {
+                    name: "Laboratory Equipment",
+                    items: ["Test Tubes", "Microscopes", "Beakers"]
                 },
-                labAccessories: {
-                    title: "Laboratory Accessories",
-                    items: ["Safety Goggles", "Gloves"],
+                {
+                    name: "Laboratory Accessories",
+                    items: ["Sample Holders", "Petri Dishes", "Bunsen Burners"]
                 },
-                measuringTools: {
-                    title: "Measuring and Calibration Tools",
-                    items: ["Calipers", "Thermometers"],
+                {
+                    name: "Measuring and Calibration Tools",
+                    items: ["Calipers", "Thermometers", "Weight Scales"]
                 },
-            },
+            ],
         },
         defense: {
-            title: "Defense and Security",
-            subcategories: {
-                securityTools: {
-                    title: "Security and Enforcement Equipment",
-                    items: ["Cameras", "Alarms"],
+            subcategories: [
+                {
+                    name: "Security and Enforcement Equipment",
+                    items: ["Security Cameras", "Metal Detectors", "Handcuffs"]
                 },
-                safetyTools: {
-                    title: "Safety, Protection, and Monitoring Tools",
-                    items: ["Fire Extinguishers", "Safety Helmets"],
+                {
+                    name: "Safety, Protection, and Monitoring Tools",
+                    items: ["Smoke Alarms", "First Aid Kits", "Protective Helmets"]
                 },
-                firePrevention: {
-                    title: "Fire Prevention Equipment",
-                    items: ["Smoke Detectors", "Sprinklers"],
+                {
+                    name: "Fire Prevention Equipment",
+                    items: ["Fire Extinguishers", "Fire Blankets", "Sprinkler Systems"]
                 },
-            },
+            ],
+        },
+        engineering: {
+            subcategories: [
+                {
+                    name: "Electrical Engineering Tools",
+                    items: ["Multimeters", "Soldering Kits", "Circuit Testers"]
+                },
+                {
+                    name: "Electrical Cables, Wires, and Accessories",
+                    items: ["Power Cables", "LAN Wires", "Extension Cords"]
+                },
+                {
+                    name: "Electrical and Electronic Components and Systems",
+                    items: ["Transformers", "Circuit Breakers", "Relays"]
+                },
+                {
+                    name: "Lighting Components and Accessories",
+                    items: ["LED Bulbs", "Light Switches", "Smart Lighting Systems"]
+                },
+            ],
         },
         professional: {
-            title: "Professional Services",
-            subcategories: {
-                cleaning: {
-                    title: "Cleaning and Maintenance Services",
-                    items: ["Office Cleaning", "Window Washing"],
+            subcategories: [
+                {
+                    name: "Cleaning and Maintenance Services",
+                    items: ["Deep Cleaning", "Janitorial Supplies", "Sanitization Services"]
                 },
-                wasteManagement: {
-                    title: "Garbage Collection",
-                    items: ["Trash Bags", "Dumpsters"],
+                {
+                    name: "Building and Office Cleaning",
+                    items: ["Window Cleaning", "Floor Polishing", "Carpet Cleaning"]
                 },
-            },
+                {
+                    name: "Area Cleaning",
+                    items: ["Garden Maintenance", "Parking Lot Sweeping", "Trash Removal"]
+                },
+                {
+                    name: "Garbage Collection",
+                    items: ["Commercial Trash Pickup", "Recycling Services", "Waste Management"]
+                },
+            ],
+        },
+        repairs: {
+            subcategories: [
+                {
+                    name: "Air Conditioning Systems",
+                    items: ["HVAC Repairs", "Filter Replacements", "Thermostat Calibration"]
+                },
+                {
+                    name: "Medical and Laboratory Equipment",
+                    items: ["Diagnostic Machine Repairs", "Calibration Services", "Replacement Parts"]
+                },
+            ],
+        },
+        beautification: {
+            subcategories: [
+                {
+                    name: "Building Interior Design",
+                    items: ["Furniture Layouts", "Wall Art Installations", "Lighting Designs"]
+                },
+                {
+                    name: "Outdoor Landscaping",
+                    items: ["Garden Design", "Lawn Maintenance", "Tree Planting"]
+                },
+            ],
+        },
+        leasing: {
+            subcategories: [
+                {
+                    name: "Office Machines and Equipment",
+                    items: ["Photocopiers", "Printers", "Workstations"]
+                },
+            ],
         },
         tailoring: {
-            title: "Tailoring Services",
-            subcategories: {
-                clothing: {
-                    title: "Clothing and Accessories Tailoring",
-                    items: ["Suits", "Dresses"],
+            subcategories: [
+                {
+                    name: "Clothing and Accessories Tailoring",
+                    items: ["Custom Suits", "Uniforms", "Alteration Services"]
                 },
-            },
+            ],
         },
     };
 
