@@ -148,87 +148,73 @@
         <h2>Our Services</h2>
         <p>Explore our range of solutions designed to meet your business needs.</p>
         <div class="service-grid">
-             <!-- Example Category Card -->
-            <div class="service-card" data-category="furniture">
+            <!-- Category Cards -->
+            <div class="service-card" data-category="furniture" style="background-image: url('images/furniture-category.jpg');">
                 <h3>Furniture and Office Equipment</h3>
-                <p>Explore furniture and accessories.</p>
             </div>
-            <!-- Office Supplies and Stationery -->
-            <div class="service-card" data-category="stationery">
+            <div class="service-card" data-category="stationery" style="background-image: url('images/stationery-category.jpg');">
                 <h3>Office Supplies and Stationery</h3>
-                <p>Comprehensive office supplies and stationery items.</p>
             </div>
-            <!-- Sports and Recreational Equipment -->
-            <div class="service-card" data-category="sports">
+            <div class="service-card" data-category="sports" style="background-image: url('images/sports-category.jpg');">
                 <h3>Sports and Recreational Equipment</h3>
-                <p>Sportswear, accessories, and recreational tools.</p>
             </div>
-            <!-- Medical and Pharmaceutical Equipment -->
-            <div class="service-card" data-category="medical">
+            <div class="service-card" data-category="medical" style="background-image: url('images/medical-category.jpg');">
                 <h3>Medical and Pharmaceutical Equipment</h3>
-                <p>Comprehensive hospital and medical equipment.</p>
             </div>
-            <!-- Pharmaceuticals -->
-            <div class="service-card" data-category="pharmaceuticals">
+            <div class="service-card" data-category="pharmaceuticals" style="background-image: url('images/pharmaceuticals-category.jpg');">
                 <h3>Pharmaceuticals</h3>
-                <p>Non-scheduled medicines and pharmaceutical supplies.</p>
             </div>
-            <div class="service-card" data-category="disposable">
+            <div class="service-card" data-category="disposable" style="background-image: url('images/disposable-category.jpg');">
                 <h3>Medical Disposable and Reusable Equipment</h3>
-                <p>Disposable and reusable medical tools and textiles.</p>
             </div>
-            <div class="service-card" data-category="chemicals">
+            <div class="service-card" data-category="chemicals" style="background-image: url('images/chemicals-category.jpg');">
                 <h3>Chemicals and Laboratory Equipment</h3>
-                <p>Laboratory tools, accessories, and chemical supplies.</p>
             </div>
-            <div class="service-card" data-category="defense">
+            <div class="service-card" data-category="defense" style="background-image: url('images/defense-category.jpg');">
                 <h3>Defense and Security</h3>
-                <p>Safety, protection, and monitoring tools.</p>
             </div>
-            <div class="service-card" data-category="engineering">
+            <div class="service-card" data-category="engineering" style="background-image: url('images/engineering-category.jpg');">
                 <h3>Engineering and Electronics</h3>
-                <p>Comprehensive electrical and engineering tools.</p>
             </div>
-            <div class="service-card" data-category="professional">
+            <div class="service-card" data-category="professional" style="background-image: url('images/professional-category.jpg');">
                 <h3>Professional Services</h3>
-                <p>Cleaning, maintenance, and professional services.</p>
             </div>
-            <div class="service-card" data-category="repairs">
+            <div class="service-card" data-category="repairs" style="background-image: url('images/repairs-category.jpg');">
                 <h3>Repairs and Maintenance</h3>
-                <p>Repair and maintenance of critical equipment.</p>
             </div>
-            <div class="service-card" data-category="beautification">
+            <div class="service-card" data-category="beautification" style="background-image: url('images/beautification-category.jpg');">
                 <h3>Beautification Services</h3>
-                <p>Interior design and outdoor landscaping.</p>
             </div>
-            <div class="service-card" data-category="leasing">
+            <div class="service-card" data-category="leasing" style="background-image: url('images/leasing-category.jpg');">
                 <h3>Leasing Services</h3>
-                <p>Office machines and equipment leasing.</p>
             </div>
-            <div class="service-card" data-category="tailoring">
+            <div class="service-card" data-category="tailoring" style="background-image: url('images/tailoring-category.jpg');">
                 <h3>Tailoring Services</h3>
-                <p>Clothing and accessories tailoring services.</p>
             </div>
         </div>
-    </section>    
 
-    <!-- Subcategory Popup -->
-    <div id="subcategory-popup" class="popup hidden">
-        <div class="popup-header">
-            <h3 id="subcategory-title"></h3>
-            <button id="subcategory-close">&times;</button>
+        <!-- Subcategory Popup -->
+        <div id="subcategory-popup" class="subcategory-popup hidden">
+            <div class="popup-header">
+                <h4 id="popup-title"></h4>
+                <button id="close-subcategory-popup">&times;</button>
+            </div>
+            <div id="subcategory-grid" class="subcategory-grid">
+                <!-- Subcategories will load dynamically here -->
+            </div>
         </div>
-        <ul id="subcategory-list"></ul>
-    </div>
 
-    <!-- Items Popup -->
-    <div id="items-popup" class="popup hidden">
-        <div class="popup-header">
-            <h3 id="items-title"></h3>
-            <button id="items-close">&times;</button>
+        <!-- Item Popup -->
+        <div id="item-popup" class="item-popup hidden">
+            <div class="popup-header">
+                <h4 id="item-popup-title"></h4>
+                <button id="close-item-popup">&times;</button>
+            </div>
+            <div id="item-grid" class="item-grid">
+                <!-- Items will load dynamically here -->
+            </div>
         </div>
-        <ul id="items-list"></ul>
-    </div>
+    </section>
     
         <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
