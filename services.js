@@ -262,4 +262,3 @@ document.addEventListener("DOMContentLoaded", () => {
         itemGrid.appendChild(img); // Ensure this line is correct
     });
 }
-});
