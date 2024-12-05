@@ -1,14 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const serviceCards = document.querySelectorAll(".service-card");
-    const subcategoryPopup = document.getElementById("subcategory-popup");
-    const subcategoryGrid = document.getElementById("subcategory-grid");
-    const subcategoryTitle = document.getElementById("subcategory-title");
-    const closeSubcategoryPopup = document.getElementById("close-subcategory-popup");
-
-    const itemPopup = document.getElementById("item-popup");
-    const itemGrid = document.getElementById("item-grid");
-    const itemTitle = document.getElementById("item-title");
-    const closeItemPopup = document.getElementById("close-item-popup");
+document.addEventListener('DOMContentLoaded', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    const subcategoryPopup = document.getElementById('subcategory-popup');
+    const itemPopup = document.getElementById('item-popup');
+    const popupTitle = document.getElementById('popup-title');
+    const subcategoryGrid = document.getElementById('subcategory-grid');
+    const itemGrid = document.getElementById('item-grid');
+    const closeSubcategoryPopup = document.getElementById('close-subcategory-popup');
+    const closeItemPopup = document.getElementById('close-item-popup');
     
     // Subcategories and Items Data
     const data = {
