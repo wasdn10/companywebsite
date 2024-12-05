@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Furniture and Office Equipment",
             subcategories: {
                 "Laboratory Furniture": [
-                    { name: "Lab Chair", images: ["lab-chair1.jpg", "lab-chair2.jpg", "lab-chair3.jpg", "lab-chair4.jpg", "lab-chair5.jpg"] },
-                    { name: "Workbench", images: ["workbench1.jpg", "workbench2.jpg", "workbench3.jpg", "workbench4.jpg", "workbench5.jpg"] }
+                    { name: "Lab Chair", images: ["modern lab chair.png", "modern lab chair 2.png", "modern lab chair 3.png", "modern lab chair 4.png", "modern lab chair 5.png"] },
+                    { name: "Workbench", images: ["workbench 1.png", "workbench 2.png", "workbench 3.png", "workbench 4.png", "workbench 5.png"] }
                 ],
                 "Wooden Furniture": [
-                    { name: "Dining Table", images: ["dining1.jpg", "dining2.jpg", "dining3.jpg", "dining4.jpg", "dining5.jpg"] },
+                    { name: "Dining Table", images: ["wooden dining table.png", "wooden dining table 2.png", "wooden dining table 3.png", "wooden dining table 4.png", "wooden dining table 5.png"] },
                     { name: "Bookshelf", images: ["bookshelf1.jpg", "bookshelf2.jpg", "bookshelf3.jpg", "bookshelf4.jpg", "bookshelf5.jpg"] }
                 ]
             }
