@@ -253,12 +253,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show Item Details (Image Carousel)
     function showItemDetails(item) {
-    itemGrid.innerHTML = `<h4>${item.name}</h4>`;
-    item.images.forEach((image) => {
-        const img = document.createElement("img");
-        img.src = `assets/images/${image}`;
-        img.alt = item.name;
-        img.className = "carousel-image";
-        itemGrid.appendChild(img); // Ensure this line is correct
-    });
+        itemGrid.innerHTML = `<h4>${item.name}</h4>`;
+        item.images.forEach((image) => {
+            const img = document.createElement("img");
+            img.src = `assets/images/${image}`;
+            img.alt = item.name;
+            img.className = "carousel-image";
+            itemGrid.appendChild(img);
+        });
+    }
 });
