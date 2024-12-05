@@ -261,5 +261,5 @@ document.addEventListener("DOMContentLoaded", () => {
             img.className = "carousel-image";
             itemGrid.appendChild(img);
         });
-    }
+    };
 });
