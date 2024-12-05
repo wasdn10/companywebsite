@@ -261,4 +261,4 @@ document.addEventListener("DOMContentLoaded", () => {
         img.className = "carousel-image";
         itemGrid.appendChild(img); // Ensure this line is correct
     });
-}
+});
