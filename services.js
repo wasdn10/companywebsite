@@ -185,16 +185,26 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("click", () => {
             const category = card.getAttribute("data-category");
             const selectedCategory = data[category];
-            subcategoryTitle.textContent = selectedCategory.title;
+            if (!selectedCategory) {
+                console.error("Category not found:", category);
+                return;
+            }
 
-            subcategoryGrid.innerHTML = ""; // Clear previous subcategories
+            subcategoryTitle.textContent = selectedCategory.title;
+            subcategoryGrid.innerHTML = ""; // Clear previous content
+
             Object.keys(selectedCategory.subcategories).forEach((subcategory) => {
                 const subcategoryCard = document.createElement("div");
                 subcategoryCard.className = "subcategory-card";
                 subcategoryCard.textContent = subcategory;
+
+                // Add dynamic background image for each subcategory
+                subcategoryCard.style.backgroundImage = `url('assets/images/${subcategory.toLowerCase().replace(/\s+/g, "-")}.jpg')`;
+
                 subcategoryCard.addEventListener("click", () => {
                     openItemPopup(selectedCategory.subcategories[subcategory], subcategory);
                 });
+
                 subcategoryGrid.appendChild(subcategoryCard);
             });
 
@@ -210,13 +220,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Open Item Popup
     function openItemPopup(items, subcategoryName) {
         itemTitle.textContent = subcategoryName;
-        itemGrid.innerHTML = ""; // Clear previous items
+        itemGrid.innerHTML = ""; // Clear previous content
+
         items.forEach((item) => {
             const itemCard = document.createElement("div");
             itemCard.className = "item-card";
 
             const itemImage = document.createElement("img");
-            itemImage.src = `assets/images/${item.images[0]}`;
+            itemImage.src = `assets/images/${item.images[0]}`; // Use the first image
             itemImage.alt = item.name;
 
             const itemName = document.createElement("h5");
@@ -224,9 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             itemCard.appendChild(itemImage);
             itemCard.appendChild(itemName);
+
             itemCard.addEventListener("click", () => {
                 showItemDetails(item);
             });
+
             itemGrid.appendChild(itemCard);
         });
 
@@ -238,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
         itemPopup.classList.remove("visible");
     });
 
-    // Show Item Details (Carousel)
+    // Show Item Details (Image Carousel)
     function showItemDetails(item) {
         itemGrid.innerHTML = `<h4>${item.name}</h4>`;
         item.images.forEach((image) => {
