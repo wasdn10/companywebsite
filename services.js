@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemGrid = document.getElementById("item-grid");
     const itemTitle = document.getElementById("item-title");
     const closeItemPopup = document.getElementById("close-item-popup");
-
+    
     // Subcategories and Items Data
     const data = {
         furniture: {
