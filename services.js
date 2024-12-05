@@ -180,86 +180,59 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 });
 
-    // Open Subcategory Popup
-    serviceCards.forEach((card) => {
-        card.addEventListener("click", () => {
-            const category = card.getAttribute("data-category");
-            const selectedCategory = data[category];
-            if (!selectedCategory) {
-                console.error("Category not found:", category);
-                return;
+    // Show Subcategory Popup
+    serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.getAttribute('data-category');
+            const data = servicesData[category];
+
+            if (data) {
+                popupTitle.textContent = data.title;
+                subcategoryGrid.innerHTML = Object.keys(data.subcategories)
+                    .map(subcat => `<div class="subcategory-card" data-subcategory="${subcat}" data-category="${category}"><h5>${subcat}</h5></div>`)
+                    .join('');
+                subcategoryPopup.classList.add('visible');
+                attachSubcategoryEvents();
             }
-
-            subcategoryTitle.textContent = selectedCategory.title;
-            subcategoryGrid.innerHTML = ""; // Clear previous content
-
-            Object.keys(selectedCategory.subcategories).forEach((subcategory) => {
-                const subcategoryCard = document.createElement("div");
-                subcategoryCard.className = "subcategory-card";
-                subcategoryCard.textContent = subcategory;
-
-                // Add dynamic background image for each subcategory
-                subcategoryCard.style.backgroundImage = `url('assets/images/${subcategory.toLowerCase().replace(/\s+/g, "-")}.jpg')`;
-
-                subcategoryCard.addEventListener("click", () => {
-                    openItemPopup(selectedCategory.subcategories[subcategory], subcategory);
-                });
-
-                subcategoryGrid.appendChild(subcategoryCard);
-            });
-
-            subcategoryPopup.classList.add("visible");
         });
     });
 
-    // Close Subcategory Popup
-    closeSubcategoryPopup.addEventListener("click", () => {
-        subcategoryPopup.classList.remove("visible");
-    });
+    // Attach Events to Subcategory Cards
+    function attachSubcategoryEvents() {
+        const subcategoryCards = document.querySelectorAll('.subcategory-card');
+        subcategoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const subcategory = card.getAttribute('data-subcategory');
+                const category = card.getAttribute('data-category');
+                const items = servicesData[category].subcategories[subcategory];
 
-    // Open Item Popup
-    function openItemPopup(items, subcategoryName) {
-        itemTitle.textContent = subcategoryName;
-        itemGrid.innerHTML = ""; // Clear previous content
-
-        items.forEach((item) => {
-            const itemCard = document.createElement("div");
-            itemCard.className = "item-card";
-
-            const itemImage = document.createElement("img");
-            itemImage.src = `assets/images/${item.images[0]}`; // Use the first image
-            itemImage.alt = item.name;
-
-            const itemName = document.createElement("h5");
-            itemName.textContent = item.name;
-
-            itemCard.appendChild(itemImage);
-            itemCard.appendChild(itemName);
-
-            itemCard.addEventListener("click", () => {
-                showItemDetails(item);
+                if (items) {
+                    itemGrid.innerHTML = items
+                        .map(item => `<div class="item-card"><h5>${item}</h5></div>`)
+                        .join('');
+                    itemPopup.classList.add('visible');
+                }
             });
-
-            itemGrid.appendChild(itemCard);
         });
-
-        itemPopup.classList.add("visible");
     }
 
-    // Close Item Popup
-    closeItemPopup.addEventListener("click", () => {
-        itemPopup.classList.remove("visible");
+    // Close Subcategory Popup
+    closeSubcategoryPopup.addEventListener('click', () => {
+        subcategoryPopup.classList.remove('visible');
     });
 
-    // Show Item Details (Image Carousel)
-    function showItemDetails(item) {
-        itemGrid.innerHTML = `<h4>${item.name}</h4>`;
-        item.images.forEach((image) => {
-            const img = document.createElement("img");
-            img.src = `assets/images/${image}`;
-            img.alt = item.name;
-            img.className = "carousel-image";
-            itemGrid.appendChild(img);
-        });
-    };
+    // Close Item Popup
+    closeItemPopup.addEventListener('click', () => {
+        itemPopup.classList.remove('visible');
+    });
+
+    // Close Popups on Outside Click
+    window.addEventListener('click', (event) => {
+        if (event.target === subcategoryPopup) {
+            subcategoryPopup.classList.remove('visible');
+        }
+        if (event.target === itemPopup) {
+            itemPopup.classList.remove('visible');
+        }
+    });
 });
