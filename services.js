@@ -260,4 +260,4 @@ document.addEventListener('DOMContentLoaded', () => {
             itemGrid.appendChild(img);
         });
     }
-});
+})
