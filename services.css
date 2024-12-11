@@ -1,192 +1,155 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Select DOM elements
-    const serviceCards = document.querySelectorAll(".service-card");
-    const subcategoryPopup = document.getElementById("subcategory-popup");
-    const itemPopup = document.getElementById("item-popup");
-    const popupTitle = document.getElementById("popup-title");
-    const subcategoryGrid = document.getElementById("subcategory-grid");
-    const itemGrid = document.getElementById("item-grid");
-    const closeSubcategoryPopup = document.getElementById("close-subcategory-popup");
-    const closeItemPopup = document.getElementById("close-item-popup");
-    const cart = []; // Array to store cart items
+/* Reset and Base Styles */
+body, h1, h2, h3, h4, h5, h6, p, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
 
-    // Validate necessary DOM elements
-    if (!serviceCards.length || !subcategoryPopup || !itemPopup || !subcategoryGrid || !itemGrid) {
-        console.error("One or more DOM elements are missing.");
-        return;
-    }
+/* Container Styles */
+.services {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.services h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    color: #007bff;
+}
+.services p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #555;
+}
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
 
-    // Fetch Subcategories and Items Data dynamically
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
+/* Service Card Styles */
+.service-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+.service-card h3 {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+.service-card::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%; /* Maintain aspect ratio */
+}
+.service-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-            // Add click event listeners to service cards
-            serviceCards.forEach((card) => {
-                card.addEventListener("click", () => {
-                    const category = card.getAttribute("data-category");
-                    const selectedCategory = data[category];
+/* Popup Styles */
+#subcategory-popup, #item-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 80%;
+    max-width: 800px;
+}
+.popup.visible {
+    display: block;
+}
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.popup-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007bff;
+}
+.popup-header button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+}
+.popup-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.popup-content .subcategory-grid, .popup-content .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
 
-                    if (!selectedCategory) {
-                        console.error(`Category "${category}" not found.`);
-                        return;
-                    }
-
-                    // Populate subcategory popup
-                    popupTitle.textContent = selectedCategory.title;
-                    renderSubcategories(selectedCategory.subcategories);
-                    subcategoryPopup.classList.add("visible");
-                });
-            });
-
-            // Render subcategories dynamically
-            function renderSubcategories(subcategories) {
-                subcategoryGrid.innerHTML = ""; // Clear previous content
-                Object.keys(subcategories).forEach((subcategory) => {
-                    const subcategoryCard = document.createElement("div");
-                    subcategoryCard.className = "subcategory-card";
-                    subcategoryCard.textContent = subcategory;
-                    subcategoryCard.addEventListener("click", () => {
-                        renderItems(subcategories[subcategory], subcategory);
-                    });
-                    subcategoryGrid.appendChild(subcategoryCard);
-                });
-            }
-
-            // Render items dynamically
-            function renderItems(items, subcategoryName) {
-                popupTitle.textContent = subcategoryName;
-                itemGrid.innerHTML = ""; // Clear previous content
-
-                items.forEach((item) => {
-                    const itemCard = document.createElement("div");
-                    itemCard.className = "item-card";
-
-                    const itemImage = document.createElement("img");
-                    itemImage.src = `assets/images/${item.images[0]}`;
-                    itemImage.alt = item.name;
-
-                    const itemName = document.createElement("h5");
-                    itemName.textContent = item.name;
-
-                    const itemPrice = document.createElement("p");
-                    itemPrice.textContent = `Price: $${item.price}`;
-
-                    const itemStock = document.createElement("p");
-                    itemStock.textContent = `Stock: ${item.stock}`;
-
-                    const addToCartButton = document.createElement("button");
-                    addToCartButton.textContent = "Add to Cart";
-                    addToCartButton.className = "add-to-cart";
-                    addToCartButton.disabled = item.stock <= 0;
-                    addToCartButton.addEventListener("click", () => {
-                        addToCart(item);
-                    });
-
-                    itemCard.appendChild(itemImage);
-                    itemCard.appendChild(itemName);
-                    itemCard.appendChild(itemPrice);
-                    itemCard.appendChild(itemStock);
-                    itemCard.appendChild(addToCartButton);
-
-                    itemCard.addEventListener("click", () => {
-                        showItemDetails(item);
-                    });
-
-                    itemGrid.appendChild(itemCard);
-                });
-
-                itemPopup.classList.add("visible");
-            }
-
-            // Show item details with carousel
-            function showItemDetails(item) {
-                itemGrid.innerHTML = `
-                    <h4>${item.name}</h4>
-                    <p>Price: $${item.price}</p>
-                    <p>Description: ${item.description}</p>
-                    <div class="carousel">
-                        ${item.images
-                            .map(
-                                (image) => `<img class="carousel-image" src="assets/images/${image}" alt="${item.name}">`
-                            )
-                            .join("")}
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart(${JSON.stringify(item)})">Add to Cart</button>
-                `;
-
-                setupCarousel();
-            }
-
-            // Setup carousel functionality
-            function setupCarousel() {
-                const images = document.querySelectorAll(".carousel-image");
-                let currentIndex = 0;
-
-                const updateCarousel = () => {
-                    images.forEach((img, index) => {
-                        img.style.display = index === currentIndex ? "block" : "none";
-                    });
-                };
-
-                updateCarousel();
-
-                // Add navigation buttons
-                const prevButton = document.createElement("button");
-                prevButton.textContent = "Previous";
-                prevButton.className = "carousel-prev";
-                prevButton.addEventListener("click", () => {
-                    currentIndex = (currentIndex - 1 + images.length) % images.length;
-                    updateCarousel();
-                });
-
-                const nextButton = document.createElement("button");
-                nextButton.textContent = "Next";
-                nextButton.className = "carousel-next";
-                nextButton.addEventListener("click", () => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    updateCarousel();
-                });
-
-                itemGrid.appendChild(prevButton);
-                itemGrid.appendChild(nextButton);
-            }
-
-            // Add item to cart
-            function addToCart(item) {
-                if (item.stock > 0) {
-                    cart.push(item);
-                    item.stock -= 1;
-                    alert(`${item.name} has been added to your cart.`);
-                    renderItems(Object.values(data[item.category].subcategories).flat(), popupTitle.textContent);
-                } else {
-                    alert(`${item.name} is out of stock.`);
-                }
-                console.log("Cart: ", cart);
-            }
-
-            // Close subcategory popup
-            closeSubcategoryPopup.addEventListener("click", () => {
-                subcategoryPopup.classList.remove("visible");
-            });
-
-            // Close item popup
-            closeItemPopup.addEventListener("click", () => {
-                itemPopup.classList.remove("visible");
-            });
-
-        })
-        .catch(error => console.error("Error loading data: ", error));
-
-    // Detect clicks outside popups to close them
-    window.addEventListener("click", (event) => {
-        if (!subcategoryPopup.contains(event.target) && !subcategoryPopup.classList.contains("hidden")) {
-            subcategoryPopup.classList.remove("visible");
-        }
-
-        if (!itemPopup.contains(event.target) && !itemPopup.classList.contains("hidden")) {
-            itemPopup.classList.remove("visible");
-        }
-    });
-});
-                
+/* Carousel Styles */
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.carousel img {
+    max-width: 100%;
+    max-height: 300px;
+    display: none;
+}
+.carousel img.active {
+    display: block;
+}
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.carousel button.prev {
+    left: 10px;
+}
+.carousel button.next {
+    right: 10px;
+}
