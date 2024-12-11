@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const serviceCards = document.querySelectorAll(".service-card");
+    const serviceCards = document.querySelector(".service-grid");
     const subcategoryPopup = document.getElementById("subcategory-popup");
     const itemPopup = document.getElementById("item-popup");
     const cartPopup = document.getElementById("cart-popup");
@@ -12,12 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeItemPopup = document.getElementById("close-item-popup");
     const closeCartPopup = document.getElementById("close-cart-popup");
     const cart = [];
-
     let data = {};
 
     // Fetch JSON Data
     fetch("data.json")
-        .then((response) => response.json())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch data.json");
+            }
+            return response.json();
+        })
         .then((fetchedData) => {
             data = fetchedData.categories;
             renderServiceCards(data);
@@ -26,8 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Service Cards
     function renderServiceCards(data) {
-        const serviceGrid = document.querySelector(".service-grid");
-        serviceGrid.innerHTML = ""; // Clear existing content
+        serviceCards.innerHTML = ""; // Clear existing content
         data.forEach((category) => {
             const card = document.createElement("div");
             card.className = "service-card";
@@ -38,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title.textContent = category.title;
 
             card.appendChild(title);
-            serviceGrid.appendChild(card);
+            serviceCards.appendChild(card);
 
             card.addEventListener("click", () => renderSubcategories(category));
         });
