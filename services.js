@@ -72,9 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     const itemPrice = document.createElement("p");
                     itemPrice.textContent = `Price: $${item.price}`;
 
+                    const itemStock = document.createElement("p");
+                    itemStock.textContent = `Stock: ${item.stock}`;
+
                     const addToCartButton = document.createElement("button");
                     addToCartButton.textContent = "Add to Cart";
                     addToCartButton.className = "add-to-cart";
+                    addToCartButton.disabled = item.stock <= 0;
                     addToCartButton.addEventListener("click", () => {
                         addToCart(item);
                     });
@@ -82,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     itemCard.appendChild(itemImage);
                     itemCard.appendChild(itemName);
                     itemCard.appendChild(itemPrice);
+                    itemCard.appendChild(itemStock);
                     itemCard.appendChild(addToCartButton);
 
                     itemCard.addEventListener("click", () => {
@@ -99,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 itemGrid.innerHTML = `
                     <h4>${item.name}</h4>
                     <p>Price: $${item.price}</p>
+                    <p>Description: ${item.description}</p>
                     <div class="carousel">
                         ${item.images
                             .map(
@@ -148,8 +154,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Add item to cart
             function addToCart(item) {
-                cart.push(item);
-                alert(`${item.name} has been added to your cart.`);
+                if (item.stock > 0) {
+                    cart.push(item);
+                    item.stock -= 1;
+                    alert(`${item.name} has been added to your cart.`);
+                    renderItems(Object.values(data[item.category].subcategories).flat(), popupTitle.textContent);
+                } else {
+                    alert(`${item.name} is out of stock.`);
+                }
                 console.log("Cart: ", cart);
             }
 
