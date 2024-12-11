@@ -1,0 +1,123 @@
+{
+  "furniture": {
+    "title": "Furniture and Office Equipment",
+    "subcategories": {
+      "Laboratory Furniture": [
+        {
+          "name": "Lab Chair",
+          "price": 120,
+          "images": ["modern lab chair.png", "modern lab chair 2.png", "modern lab chair 3.png", "modern lab chair 4.png", "modern lab chair 5.png"]
+        },
+        {
+          "name": "Workbench",
+          "price": 250,
+          "images": ["workbench 1.png", "workbench 2.png", "workbench 3.png", "workbench 4.png", "workbench 5.png"]
+        }
+      ],
+      "Wooden Furniture": [
+        {
+          "name": "Dining Table",
+          "price": 300,
+          "images": ["wooden dining table.png", "wooden dining table 2.png", "wooden dining table 3.png", "wooden dining table 4.png", "wooden dining table 5.png"]
+        },
+        {
+          "name": "Bookshelf",
+          "price": 150,
+          "images": ["bookshelf1.jpg", "bookshelf2.jpg", "bookshelf3.jpg", "bookshelf4.jpg", "bookshelf5.jpg"]
+        }
+      ]
+    }
+  },
+  "stationery": {
+    "title": "Office Supplies and Stationery",
+    "subcategories": {
+      "General Stationery": [
+        {
+          "name": "Stapler",
+          "price": 10,
+          "images": ["stapler1.jpg", "stapler2.jpg", "stapler3.jpg", "stapler4.jpg", "stapler5.jpg"]
+        },
+        {
+          "name": "Puncher",
+          "price": 12,
+          "images": ["puncher1.jpg", "puncher2.jpg", "puncher3.jpg", "puncher4.jpg", "puncher5.jpg"]
+        }
+      ],
+      "Drafting Materials": [
+        {
+          "name": "Drafting Table",
+          "price": 180,
+          "images": ["drafting1.jpg", "drafting2.jpg", "drafting3.jpg", "drafting4.jpg", "drafting5.jpg"]
+        },
+        {
+          "name": "Drafting Compass",
+          "price": 25,
+          "images": ["compass1.jpg", "compass2.jpg", "compass3.jpg", "compass4.jpg", "compass5.jpg"]
+        }
+      ]
+    }
+  },
+  "sports": {
+    "title": "Sports and Recreational Equipment",
+    "subcategories": {
+      "Sportswear": [
+        {
+          "name": "Running Shoes",
+          "price": 90,
+          "images": ["shoes1.jpg", "shoes2.jpg", "shoes3.jpg", "shoes4.jpg", "shoes5.jpg"]
+        },
+        {
+          "name": "Tracksuit",
+          "price": 120,
+          "images": ["tracksuit1.jpg", "tracksuit2.jpg", "tracksuit3.jpg", "tracksuit4.jpg", "tracksuit5.jpg"]
+        }
+      ]
+    }
+  },
+  "medical": {
+    "title": "Medical and Pharmaceutical Equipment",
+    "subcategories": {
+      "Hospital Equipment and Medical Supplies": [
+        {
+          "name": "Hospital Beds",
+          "price": 600,
+          "images": ["hospital-bed1.jpg", "hospital-bed2.jpg", "hospital-bed3.jpg", "hospital-bed4.jpg", "hospital-bed5.jpg"]
+        },
+        {
+          "name": "Wheelchairs",
+          "price": 200,
+          "images": ["wheelchair1.jpg", "wheelchair2.jpg", "wheelchair3.jpg", "wheelchair4.jpg", "wheelchair5.jpg"]
+        }
+      ],
+      "Rehabilitation and Disability Equipment": [
+        {
+          "name": "Crutches",
+          "price": 35,
+          "images": ["crutch1.jpg", "crutch2.jpg", "crutch3.jpg", "crutch4.jpg", "crutch5.jpg"]
+        },
+        {
+          "name": "Walkers",
+          "price": 70,
+          "images": ["walker1.jpg", "walker2.jpg", "walker3.jpg", "walker4.jpg", "walker5.jpg"]
+        }
+      ]
+    }
+  },
+  "chemicals": {
+    "title": "Chemicals and Laboratory Equipment",
+    "subcategories": {
+      "Laboratory Equipment": [
+        {
+          "name": "Test Tubes",
+          "price": 5,
+          "images": ["test-tube1.jpg", "test-tube2.jpg", "test-tube3.jpg", "test-tube4.jpg", "test-tube5.jpg"]
+        },
+        {
+          "name": "Microscopes",
+          "price": 400,
+          "images": ["microscope1.jpg", "microscope2.jpg", "microscope3.jpg", "microscope4.jpg", "microscope5.jpg"]
+        }
+      ]
+    }
+  }
+}
