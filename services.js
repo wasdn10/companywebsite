@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Select DOM elements
     const serviceGrid = document.querySelector(".service-grid");
     const subcategoryPopup = document.getElementById("subcategory-popup");
     const itemPopup = document.getElementById("item-popup");
@@ -13,6 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeCartPopup = document.getElementById("close-cart-popup");
     let cart = [];
     let data = [];
+
+    // Check for missing DOM elements
+    if (!serviceGrid || !subcategoryPopup || !itemPopup || !cartPopup) {
+        console.error("One or more required DOM elements are missing.");
+        return;
+    }
 
     // Fetch JSON Data
     fetch("data.json")
@@ -30,10 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Service Cards
     function renderServiceCards(data) {
-        if (!serviceGrid) {
-            console.error("Service grid element not found.");
-            return;
-        }
         serviceGrid.innerHTML = ""; // Clear any existing content
         data.forEach(category => {
             const card = document.createElement("div");
@@ -53,10 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Subcategories
     function renderSubcategories(category) {
-        if (!subcategoryPopup || !subcategoryGrid) {
-            console.error("Subcategory popup or grid element not found.");
-            return;
-        }
         subcategoryPopup.classList.add("visible");
         subcategoryGrid.innerHTML = ""; // Clear existing content
         category.subcategories.forEach(subcategory => {
@@ -71,10 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Items
     function renderItems(items) {
-        if (!itemPopup || !itemGrid) {
-            console.error("Item popup or grid element not found.");
-            return;
-        }
         itemPopup.classList.add("visible");
         itemGrid.innerHTML = ""; // Clear existing content
         items.forEach(item => {
@@ -114,10 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Cart
     function updateCart() {
-        if (!cartPopup || !cartItems || !totalPriceDisplay) {
-            console.error("Cart popup elements not found.");
-            return;
-        }
         cartItems.innerHTML = "";
         let totalPrice = 0;
 
@@ -140,17 +131,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Close Popups
     [closeSubcategoryPopup, closeItemPopup, closeCartPopup].forEach(button => {
-        button?.addEventListener("click", () => {
-            subcategoryPopup?.classList.remove("visible");
-            itemPopup?.classList.remove("visible");
-            cartPopup?.classList.remove("visible");
-        });
+        if (button) {
+            button.addEventListener("click", () => {
+                subcategoryPopup.classList.remove("visible");
+                itemPopup.classList.remove("visible");
+                cartPopup.classList.remove("visible");
+            });
+        }
     });
 
     // Search Functionality
     searchInput?.addEventListener("input", debounce(e => {
         const query = e.target.value.toLowerCase();
-        const filteredItems = data.flatMap(category => category.subcategories.flatMap(sub => sub.items)).filter(item => item.name.toLowerCase().includes(query));
+        const filteredItems = data
+            .flatMap(category => category.subcategories.flatMap(sub => sub.items))
+            .filter(item => item.name.toLowerCase().includes(query));
+
         renderItems(filteredItems);
     }, 300));
 
