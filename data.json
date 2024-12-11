@@ -1,79 +1,134 @@
 {
-  "categories": [
-    {
-      "id": "furniture",
-      "title": "Furniture and Office Equipment",
-      "subcategories": [
-        {
-          "name": "Laboratory Furniture",
-          "items": [
-            {
-              "id": "lab-chair",
-              "name": "Lab Chair",
-              "description": "Comfortable and durable lab chair.",
-              "price": 120,
-              "stock": 25,
-              "images": ["modern lab chair.png", "modern lab chair 2.png"]
-            },
-            {
-              "id": "workbench",
-              "name": "Workbench",
-              "description": "Heavy-duty workbench for laboratories.",
-              "price": 250,
-              "stock": 10,
-              "images": ["workbench 1.png", "workbench 2.png"]
-            }
-          ]
-        },
-        {
-          "name": "Wooden Furniture",
-          "items": [
-            {
-              "id": "dining-table",
-              "name": "Dining Table",
-              "description": "Elegant wooden dining table.",
-              "price": 300,
-              "stock": 15,
-              "images": ["wooden dining table.png", "wooden dining table 2.png"]
-            },
-            {
-              "id": "bookshelf",
-              "name": "Bookshelf",
-              "description": "Spacious wooden bookshelf.",
-              "price": 150,
-              "stock": 30,
-              "images": ["bookshelf1.jpg", "bookshelf2.jpg"]
-            }
-          ]
+    "furniture": {
+        "title": "Furniture and Office Equipment",
+        "subcategories": {
+            "Laboratory Furniture": [
+                { "name": "Lab Chair", "price": 120, "stock": 10, "description": "Comfortable lab chair for long hours of work.", "images": ["modern lab chair.png", "modern lab chair 2.png", "modern lab chair 3.png", "modern lab chair 4.png", "modern lab chair 5.png"] },
+                { "name": "Workbench", "price": 250, "stock": 5, "description": "Durable workbench for laboratory setups.", "images": ["workbench 1.png", "workbench 2.png", "workbench 3.png", "workbench 4.png", "workbench 5.png"] }
+            ],
+            "Wooden Furniture": [
+                { "name": "Dining Table", "price": 500, "stock": 3, "description": "Elegant wooden dining table.", "images": ["wooden dining table.png", "wooden dining table 2.png", "wooden dining table 3.png", "wooden dining table 4.png", "wooden dining table 5.png"] },
+                { "name": "Bookshelf", "price": 150, "stock": 7, "description": "Stylish bookshelf for your study.", "images": ["bookshelf1.jpg", "bookshelf2.jpg", "bookshelf3.jpg", "bookshelf4.jpg", "bookshelf5.jpg"] }
+            ]
         }
-      ]
     },
-    {
-      "id": "stationery",
-      "title": "Office Supplies and Stationery",
-      "subcategories": [
-        {
-          "name": "General Stationery",
-          "items": [
-            {
-              "id": "stapler",
-              "name": "Stapler",
-              "description": "Durable stapler for office use.",
-              "price": 10,
-              "stock": 50,
-              "images": ["stapler1.jpg", "stapler2.jpg"]
-            },
-            {
-              "id": "puncher",
-              "name": "Puncher",
-              "description": "Metal puncher for precise hole punching.",
-              "price": 12,
-              "stock": 40,
-              "images": ["puncher1.jpg", "puncher2.jpg"]
-            }
-          ]
+    "stationery": {
+        "title": "Office Supplies and Stationery",
+        "subcategories": {
+            "General Stationery": [
+                { "name": "Stapler", "price": 5, "stock": 50, "description": "Compact stapler for office use.", "images": ["stapler1.jpg", "stapler2.jpg", "stapler3.jpg", "stapler4.jpg", "stapler5.jpg"] },
+                { "name": "Puncher", "price": 8, "stock": 30, "description": "Durable puncher for professional documents.", "images": ["puncher1.jpg", "puncher2.jpg", "puncher3.jpg", "puncher4.jpg", "puncher5.jpg"] }
+            ],
+            "Drafting Materials": [
+                { "name": "Drafting Table", "price": 300, "stock": 2, "description": "Adjustable drafting table for precise designs.", "images": ["drafting1.jpg", "drafting2.jpg", "drafting3.jpg", "drafting4.jpg", "drafting5.jpg"] },
+                { "name": "Drafting Compass", "price": 15, "stock": 20, "description": "High-quality drafting compass.", "images": ["compass1.jpg", "compass2.jpg", "compass3.jpg", "compass4.jpg", "compass5.jpg"] }
+            ]
         }
-      ]
+    },
+    "sports": {
+        "title": "Sports and Recreational Equipment",
+        "subcategories": {
+            "Sportswear": [
+                { "name": "Running Shoes", "price": 60, "stock": 25, "description": "Lightweight running shoes.", "images": ["shoes1.jpg", "shoes2.jpg", "shoes3.jpg", "shoes4.jpg", "shoes5.jpg"] },
+                { "name": "Tracksuit", "price": 40, "stock": 15, "description": "Comfortable tracksuit for athletes.", "images": ["tracksuit1.jpg", "tracksuit2.jpg", "tracksuit3.jpg", "tracksuit4.jpg", "tracksuit5.jpg"] }
+            ]
+        }
+    },
+    "medical": {
+        "title": "Medical and Pharmaceutical Equipment",
+        "subcategories": {
+            "Hospital Equipment and Medical Supplies": [
+                { "name": "Hospital Beds", "price": 1200, "stock": 2, "description": "Ergonomic hospital bed with adjustable settings.", "images": ["hospital-bed1.jpg", "hospital-bed2.jpg", "hospital-bed3.jpg", "hospital-bed4.jpg", "hospital-bed5.jpg"] },
+                { "name": "Wheelchairs", "price": 300, "stock": 10, "description": "Lightweight and durable wheelchair.", "images": ["wheelchair1.jpg", "wheelchair2.jpg", "wheelchair3.jpg", "wheelchair4.jpg", "wheelchair5.jpg"] }
+            ],
+            "Medical Equipment and Supplies": [
+                { "name": "Stethoscope", "price": 50, "stock": 30, "description": "High-precision stethoscope.", "images": ["stethoscope1.jpg", "stethoscope2.jpg", "stethoscope3.jpg", "stethoscope4.jpg", "stethoscope5.jpg"] },
+                { "name": "Thermometer", "price": 15, "stock": 100, "description": "Digital thermometer for accurate readings.", "images": ["thermometer1.jpg", "thermometer2.jpg", "thermometer3.jpg", "thermometer4.jpg", "thermometer5.jpg"] }
+            ]
+        }
+    },
+    "pharmaceuticals": {
+        "title": "Pharmaceuticals",
+        "subcategories": {
+            "Non-Scheduled Medicines": [
+                { "name": "Pain Relievers", "price": 20, "stock": 200, "description": "Effective pain relief medicines.", "images": ["pain-reliever1.jpg", "pain-reliever2.jpg", "pain-reliever3.jpg", "pain-reliever4.jpg", "pain-reliever5.jpg"] },
+                { "name": "Cold Medications", "price": 15, "stock": 100, "description": "Cold and flu medications.", "images": ["cold-med1.jpg", "cold-med2.jpg", "cold-med3.jpg", "cold-med4.jpg", "cold-med5.jpg"] },
+                { "name": "Vitamins", "price": 10, "stock": 300, "description": "Essential vitamins for daily health.", "images": ["vitamin1.jpg", "vitamin2.jpg", "vitamin3.jpg", "vitamin4.jpg", "vitamin5.jpg"] }
+            ]
+        }
+    },
+    "disposable": {
+        "title": "Medical Disposable and Reusable Equipment",
+        "subcategories": {
+            "Disposable Medical Tools": [
+                { "name": "Syringes", "price": 5, "stock": 500, "description": "Disposable syringes for single use.", "images": ["syringe1.jpg", "syringe2.jpg", "syringe3.jpg", "syringe4.jpg", "syringe5.jpg"] },
+                { "name": "Disposable Gloves", "price": 10, "stock": 300, "description": "Latex and non-latex gloves.", "images": ["glove1.jpg", "glove2.jpg", "glove3.jpg", "glove4.jpg", "glove5.jpg"] }
+            ]
+        }
+    },
+    "chemicals": {
+        "title": "Chemicals and Laboratory Equipment",
+        "subcategories": {
+            "Laboratory Equipment": [
+                { "name": "Test Tubes", "price": 2, "stock": 1000, "description": "Durable test tubes for laboratory use.", "images": ["test-tube1.jpg", "test-tube2.jpg", "test-tube3.jpg", "test-tube4.jpg", "test-tube5.jpg"] },
+                { "name": "Microscopes", "price": 500, "stock": 20, "description": "Advanced microscopes for precise viewing.", "images": ["microscope1.jpg", "microscope2.jpg", "microscope3.jpg", "microscope4.jpg", "microscope5.jpg"] }
+            ]
+        }
+    },
+    "defense": {
+        "title": "Defense and Security",
+        "subcategories": {
+            "Safety Equipment": [
+                { "name": "Safety Helmets", "price": 25, "stock": 100, "description": "Protective helmets for industrial use.", "images": ["helmet1.jpg", "helmet2.jpg", "helmet3.jpg", "helmet4.jpg", "helmet5.jpg"] }
+            ]
+        }
+    },
+    "engineering": {
+        "title": "Engineering and Electronics",
+        "subcategories": {
+            "Electronic Tools": [
+                { "name": "Multimeter", "price": 30, "stock": 50, "description": "Digital multimeter for diagnostics.", "images": ["multimeter1.jpg", "multimeter2.jpg", "multimeter3.jpg", "multimeter4.jpg", "multimeter5.jpg"] }
+            ]
+        }
+    },
+    "professional": {
+        "title": "Professional Services",
+        "subcategories": {
+            "Cleaning Services": [
+                { "name": "Carpet Cleaning", "price": 80, "stock": 50, "description": "Deep cleaning services for carpets.", "images": ["carpet-cleaning1.jpg", "carpet-cleaning2.jpg", "carpet-cleaning3.jpg", "carpet-cleaning4.jpg", "carpet-cleaning5.jpg"] }
+            ]
+        }
+    },
+    "tailoring": {
+        "title": "Tailoring Services",
+        "subcategories": {
+            "Clothing Alteration": [
+                { "name": "Custom Suits", "price": 200, "stock": 20, "description": "Bespoke tailored suits for professionals.", "images": ["suit1.jpg", "suit2.jpg", "suit3.jpg", "suit4.jpg", "suit5.jpg"] }
+            ]
+        }
+    },
+    "repairs": {
+        "title": "Repairs and Maintenance",
+        "subcategories": {
+            "Air Conditioning": [
+                { "name": "HVAC Repairs", "price": 150, "stock": 10, "description": "Comprehensive repair services for HVAC systems.", "images": ["hvac1.jpg", "hvac2.jpg", "hvac3.jpg", "hvac4.jpg", "hvac5.jpg"] }
+            ]
+        }
+    },
+    "beautification": {
+        "title": "Beautification Services",
+        "subcategories": {
+            "Outdoor Landscaping": [
+                { "name": "Garden Maintenance", "price": 100, "stock": 15, "description": "Professional garden and landscape maintenance.", "images": ["landscape1.jpg", "landscape2.jpg", "landscape3.jpg", "landscape4.jpg", "landscape5.jpg"] }
+            ]
+        }
+    },
+    "leasing": {
+        "title": "Leasing Services",
+        "subcategories": {
+            "Office Equipment": [
+                { "name": "Printer Leasing", "price": 50, "stock": 25, "description": "Flexible leasing options for office printers.", "images": ["printer1.jpg", "printer2.jpg", "printer3.jpg", "printer4.jpg", "printer5.jpg"] }
+            ]
+        }
     }
-  ]
 }
