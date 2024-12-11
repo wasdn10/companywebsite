@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const serviceCards = document.querySelector(".service-grid");
+    const serviceGrid = document.querySelector(".service-grid");
     const subcategoryPopup = document.getElementById("subcategory-popup");
     const itemPopup = document.getElementById("item-popup");
     const cartPopup = document.getElementById("cart-popup");
@@ -11,27 +11,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeSubcategoryPopup = document.getElementById("close-subcategory-popup");
     const closeItemPopup = document.getElementById("close-item-popup");
     const closeCartPopup = document.getElementById("close-cart-popup");
-    const cart = [];
-    let data = {};
+    let cart = [];
+    let data = [];
 
     // Fetch JSON Data
     fetch("data.json")
-        .then((response) => {
+        .then(response => {
             if (!response.ok) {
-                throw new Error("Failed to fetch data.json");
+                throw new Error(`Failed to fetch data.json: ${response.status}`);
             }
             return response.json();
         })
-        .then((fetchedData) => {
+        .then(fetchedData => {
             data = fetchedData.categories;
             renderServiceCards(data);
         })
-        .catch((err) => console.error("Failed to load data:", err));
+        .catch(err => console.error("Error loading data:", err));
 
     // Render Service Cards
     function renderServiceCards(data) {
-        serviceCards.innerHTML = ""; // Clear existing content
-        data.forEach((category) => {
+        if (!serviceGrid) {
+            console.error("Service grid element not found.");
+            return;
+        }
+        serviceGrid.innerHTML = ""; // Clear any existing content
+        data.forEach(category => {
             const card = document.createElement("div");
             card.className = "service-card";
             card.setAttribute("data-category", category.id);
@@ -41,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title.textContent = category.title;
 
             card.appendChild(title);
-            serviceCards.appendChild(card);
+            serviceGrid.appendChild(card);
 
             card.addEventListener("click", () => renderSubcategories(category));
         });
@@ -49,9 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Subcategories
     function renderSubcategories(category) {
+        if (!subcategoryPopup || !subcategoryGrid) {
+            console.error("Subcategory popup or grid element not found.");
+            return;
+        }
         subcategoryPopup.classList.add("visible");
         subcategoryGrid.innerHTML = ""; // Clear existing content
-        category.subcategories.forEach((subcategory) => {
+        category.subcategories.forEach(subcategory => {
             const subCard = document.createElement("div");
             subCard.className = "subcategory-card";
             subCard.textContent = subcategory.name;
@@ -63,30 +71,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Items
     function renderItems(items) {
+        if (!itemPopup || !itemGrid) {
+            console.error("Item popup or grid element not found.");
+            return;
+        }
+        itemPopup.classList.add("visible");
         itemGrid.innerHTML = ""; // Clear existing content
-        items.forEach((item) => {
+        items.forEach(item => {
             const itemCard = document.createElement("div");
             itemCard.className = "item-card";
 
             itemCard.innerHTML = `
                 <img src="images/${item.images[0]}" alt="${item.name}">
                 <h5>${item.name}</h5>
-                <p>${item.description}</p>
-                <p>Price: $${item.price}</p>
-                <p>Stock: ${item.stock}</p>
+                <p>${item.description || "No description available."}</p>
+                <p>Price: $${item.price || "N/A"}</p>
+                <p>Stock: ${item.stock || 0}</p>
                 <button class="add-to-cart">Add to Cart</button>
             `;
 
             itemCard.querySelector(".add-to-cart").addEventListener("click", () => addToCart(item));
             itemGrid.appendChild(itemCard);
         });
-
-        itemPopup.classList.add("visible");
     }
 
     // Add to Cart
     function addToCart(item) {
-        const cartItem = cart.find((ci) => ci.id === item.id);
+        const cartItem = cart.find(ci => ci.id === item.id);
         if (cartItem) {
             if (cartItem.quantity < item.stock) {
                 cartItem.quantity++;
@@ -103,10 +114,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Cart
     function updateCart() {
+        if (!cartPopup || !cartItems || !totalPriceDisplay) {
+            console.error("Cart popup elements not found.");
+            return;
+        }
         cartItems.innerHTML = "";
         let totalPrice = 0;
 
-        cart.forEach((item) => {
+        cart.forEach(item => {
             totalPrice += item.price * item.quantity;
 
             const cartItem = document.createElement("div");
@@ -120,25 +135,22 @@ document.addEventListener("DOMContentLoaded", () => {
             cartItems.appendChild(cartItem);
         });
 
-        totalPriceDisplay.textContent = `Total: $${totalPrice}`;
+        totalPriceDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`;
     }
 
     // Close Popups
-    [closeSubcategoryPopup, closeItemPopup, closeCartPopup].forEach((button) => {
-        button.addEventListener("click", () => {
-            subcategoryPopup.classList.remove("visible");
-            itemPopup.classList.remove("visible");
-            cartPopup.classList.remove("visible");
+    [closeSubcategoryPopup, closeItemPopup, closeCartPopup].forEach(button => {
+        button?.addEventListener("click", () => {
+            subcategoryPopup?.classList.remove("visible");
+            itemPopup?.classList.remove("visible");
+            cartPopup?.classList.remove("visible");
         });
     });
 
     // Search Functionality
-    searchInput.addEventListener("input", debounce((e) => {
+    searchInput?.addEventListener("input", debounce(e => {
         const query = e.target.value.toLowerCase();
-        const filteredItems = data
-            .flatMap((category) => category.subcategories.flatMap((sub) => sub.items))
-            .filter((item) => item.name.toLowerCase().includes(query));
-
+        const filteredItems = data.flatMap(category => category.subcategories.flatMap(sub => sub.items)).filter(item => item.name.toLowerCase().includes(query));
         renderItems(filteredItems);
     }, 300));
 
