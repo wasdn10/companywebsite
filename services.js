@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeSubcategoryPopup = document.getElementById("close-subcategory-popup");
     const closeItemPopup = document.getElementById("close-item-popup");
     const closeProductPopup = document.getElementById("close-product-popup");
+    const cart = [];
 
     // Validate necessary DOM elements
     if (!serviceCards.length || !subcategoryPopup || !itemPopup || !subcategoryGrid || !itemGrid || !productPopup || !productDetails) {
@@ -37,41 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         images: ["workbench1.jpg", "workbench2.jpg"]
                     }
                 ],
-                "Wooden Furniture": [
-                    {
-                        name: "Dining Table",
-                        price: "RM999.00",
-                        description: "Elegant wooden dining table with a classic finish.",
-                        images: ["dining-table1.jpg", "dining-table2.jpg"]
-                    },
-                    {
-                        name: "Bookshelf",
-                        price: "RM250.00",
-                        description: "Spacious bookshelf for organizing your books and documents.",
-                        images: ["bookshelf1.jpg", "bookshelf2.jpg"]
-                    }
-                ]
-            }
+            },
         },
-        stationery: {
-            title: "Office Supplies and Stationery",
-            subcategories: {
-                "General Stationery": [
-                    {
-                        name: "Stapler",
-                        price: "RM10.00",
-                        description: "High-quality stapler for efficient document management.",
-                        images: ["stapler1.jpg", "stapler2.jpg"]
-                    },
-                    {
-                        name: "Puncher",
-                        price: "RM15.00",
-                        description: "Durable puncher for creating neat holes in documents.",
-                        images: ["puncher1.jpg", "puncher2.jpg"]
-                    }
-                ]
-            }
-        }
+    };
+
+    // Utility to clear an element's content
+    const clearElement = (element) => {
+        element.innerHTML = "";
     };
 
     // Add click event listeners to service cards
@@ -94,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render subcategories dynamically
     function renderSubcategories(subcategories) {
-        subcategoryGrid.innerHTML = ""; // Clear previous content
+        clearElement(subcategoryGrid);
         Object.keys(subcategories).forEach((subcategory) => {
             const subcategoryCard = document.createElement("div");
             subcategoryCard.className = "subcategory-card";
@@ -109,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render items dynamically
     function renderItems(items, subcategoryName) {
         popupTitle.textContent = subcategoryName;
-        itemGrid.innerHTML = ""; // Clear previous content
+        clearElement(itemGrid);
 
         items.forEach((item) => {
             const itemCard = document.createElement("div");
@@ -122,8 +95,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const itemName = document.createElement("h5");
             itemName.textContent = item.name;
 
+            const itemPrice = document.createElement("p");
+            itemPrice.textContent = item.price;
+
             itemCard.appendChild(itemImage);
             itemCard.appendChild(itemName);
+            itemCard.appendChild(itemPrice);
 
             itemCard.addEventListener("click", () => {
                 showProductDetails(item);
@@ -137,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show product details in a modal
     function showProductDetails(item) {
+        clearElement(productDetails);
         productDetails.innerHTML = `
             <h2>${item.name}</h2>
             <p class="price">${item.price}</p>
@@ -151,12 +129,20 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="add-to-cart">Add to Cart</button>
         `;
 
-        setupCarousel();
+        setupCarousel(item);
         productPopup.classList.remove("hidden");
+
+        // Add to Cart functionality
+        const addToCartButton = document.querySelector(".add-to-cart");
+        addToCartButton.addEventListener("click", () => {
+            cart.push(item);
+            alert(`${item.name} has been added to your cart!`);
+            console.log("Current Cart:", cart);
+        });
     }
 
     // Setup carousel functionality
-    function setupCarousel() {
+    function setupCarousel(item) {
         const images = document.querySelectorAll(".carousel-image");
         let currentIndex = 0;
 
@@ -168,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCarousel();
 
-        // Add navigation buttons
         const prevButton = document.createElement("button");
         prevButton.textContent = "Previous";
         prevButton.className = "carousel-prev";
@@ -189,17 +174,15 @@ document.addEventListener("DOMContentLoaded", () => {
         productDetails.appendChild(nextButton);
     }
 
-    // Close subcategory popup
+    // Close popups
     closeSubcategoryPopup.addEventListener("click", () => {
         subcategoryPopup.classList.add("hidden");
     });
 
-    // Close item popup
     closeItemPopup.addEventListener("click", () => {
         itemPopup.classList.add("hidden");
     });
 
-    // Close product popup
     closeProductPopup.addEventListener("click", () => {
         productPopup.classList.add("hidden");
     });
