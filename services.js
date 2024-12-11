@@ -16,54 +16,57 @@ document.addEventListener("DOMContentLoaded", () => {
     let data = {};
 
     // Fetch JSON Data
-    fetch('data.json')
-        .then(response => response.json())
-        .then(fetchedData => {
+    fetch("data.json")
+        .then((response) => response.json())
+        .then((fetchedData) => {
             data = fetchedData.categories;
-
-            // Render service cards dynamically
-            serviceCards.forEach((card) => {
-                card.addEventListener("click", () => {
-                    const categoryId = card.getAttribute("data-category");
-                    const selectedCategory = data.find(c => c.id === categoryId);
-
-                    if (!selectedCategory) {
-                        console.error(`Category "${categoryId}" not found.`);
-                        return;
-                    }
-
-                    renderSubcategories(selectedCategory);
-                });
-            });
+            renderServiceCards(data);
         })
-        .catch(err => console.error("Failed to load data:", err));
+        .catch((err) => console.error("Failed to load data:", err));
+
+    // Render Service Cards
+    function renderServiceCards(data) {
+        const serviceGrid = document.querySelector(".service-grid");
+        serviceGrid.innerHTML = ""; // Clear existing content
+        data.forEach((category) => {
+            const card = document.createElement("div");
+            card.className = "service-card";
+            card.setAttribute("data-category", category.id);
+            card.style.backgroundImage = `url('images/${category.id}.png')`;
+
+            const title = document.createElement("h3");
+            title.textContent = category.title;
+
+            card.appendChild(title);
+            serviceGrid.appendChild(card);
+
+            card.addEventListener("click", () => renderSubcategories(category));
+        });
+    }
 
     // Render Subcategories
     function renderSubcategories(category) {
         subcategoryPopup.classList.add("visible");
-        subcategoryGrid.innerHTML = "";
+        subcategoryGrid.innerHTML = ""; // Clear existing content
         category.subcategories.forEach((subcategory) => {
-            const subcategoryCard = document.createElement("div");
-            subcategoryCard.className = "subcategory-card";
-            subcategoryCard.textContent = subcategory.name;
+            const subCard = document.createElement("div");
+            subCard.className = "subcategory-card";
+            subCard.textContent = subcategory.name;
 
-            subcategoryCard.addEventListener("click", () => {
-                renderItems(subcategory.items);
-            });
-
-            subcategoryGrid.appendChild(subcategoryCard);
+            subCard.addEventListener("click", () => renderItems(subcategory.items));
+            subcategoryGrid.appendChild(subCard);
         });
     }
 
     // Render Items
     function renderItems(items) {
-        itemGrid.innerHTML = "";
+        itemGrid.innerHTML = ""; // Clear existing content
         items.forEach((item) => {
             const itemCard = document.createElement("div");
             itemCard.className = "item-card";
 
             itemCard.innerHTML = `
-                <img src="assets/images/${item.images[0]}" alt="${item.name}">
+                <img src="images/${item.images[0]}" alt="${item.name}">
                 <h5>${item.name}</h5>
                 <p>${item.description}</p>
                 <p>Price: $${item.price}</p>
@@ -72,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
             itemCard.querySelector(".add-to-cart").addEventListener("click", () => addToCart(item));
-
             itemGrid.appendChild(itemCard);
         });
 
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add to Cart
     function addToCart(item) {
-        const cartItem = cart.find(ci => ci.id === item.id);
+        const cartItem = cart.find((ci) => ci.id === item.id);
         if (cartItem) {
             if (cartItem.quantity < item.stock) {
                 cartItem.quantity++;
@@ -96,13 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCart();
     }
 
-    // Update Cart Display
+    // Update Cart
     function updateCart() {
         cartItems.innerHTML = "";
         let totalPrice = 0;
 
         cart.forEach((item) => {
             totalPrice += item.price * item.quantity;
+
             const cartItem = document.createElement("div");
             cartItem.className = "cart-item";
 
@@ -130,8 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", debounce((e) => {
         const query = e.target.value.toLowerCase();
         const filteredItems = data
-            .flatMap(category => category.subcategories.flatMap(sub => sub.items))
-            .filter(item => item.name.toLowerCase().includes(query));
+            .flatMap((category) => category.subcategories.flatMap((sub) => sub.items))
+            .filter((item) => item.name.toLowerCase().includes(query));
 
         renderItems(filteredItems);
     }, 300));
